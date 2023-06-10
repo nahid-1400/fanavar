@@ -1,0 +1,46 @@
+{% load static %}
+<aside id="right-box" dir="rtl">
+    <!-- user image -->
+    <div class="image">
+      {% if request.user.profile_image %} 
+      <img src="{{ request.user.profile_image.url }}">
+      {% else %}
+      <img src="{% static 'images\avatar.jpg' %}">
+      {% endif %}
+    </div>
+
+    <!-- user name -->
+    <p class="name"> {% if  request.user.first_name and request.user.last_name is not None %}
+      {{ request.user.first_name }}  {{ request.user.last_name }}
+      {% else %}
+      {{ request.user.username }}
+      {% endif %}
+    </p>
+
+    <!-- phone number -->
+    <p class="u-number">{{ request.user.phone_number }}</p>
+
+    <hr style="width: 150px; margin: 20px 40px;">
+
+    <a href="{% url 'profile:profile-user-informattion' %}">
+      <p class="u-button"><img src="{% static 'fanavar\svg\person-circle.svg' %}"  aria-hidden="true" style="margin-right: 15px;margin-left: 5px;margin-top: 5px;"> اطلاعات کاربری
+      </p>
+    </a>
+
+    <a href="{% url 'profile:profile-user-orders' %}">
+     
+      <p class="u-button"><img src="{% static 'fanavar\svg\bag.svg' %}"  aria-hidden="true" style="margin-right: 15px;margin-left: 5px;margin-top: 5px;">سفارش ها</p>
+    </a>
+
+    <a href="{% url 'profile:profile-user-tickets' %}">
+      <p class="u-button"><img src="{% static 'fanavar\svg\send.svg' %}"  aria-hidden="true" style="margin-right: 15px;margin-left: 5px;margin-top: 5px;">تیکت ها</p>
+    </a>
+
+    <a href="{% url 'profile:profile-logout-user' %}">
+      <p class="u-button" style="color: red;"><i class="fa fa-sign-out" aria-hidden="true"
+        style="margin-right: 15px;margin-left: 5px;margin-top: 5px; color: red;"></i>خروج</p>
+    </a>
+
+
+
+  </aside>

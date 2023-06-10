@@ -1,0 +1,378 @@
+/* Webfont: Yekan */
+@font-face {
+	font-family: 'Yekan';
+	src:	url('./Yekan-font-master/Yekan.eot'); /* IE9 Compat Modes */
+	src:	url('./Yekan-font-master/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('./Yekan-font-master/Yekan.woff2') format('woff2'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.woff') format('woff'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.otf') format('opentype'), /* Open Type Font */	
+			url('./Yekan-font-master/Yekan.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #353535;
+    text-align: right;
+    margin-right: 12px;
+}
+
+p {
+    color: #b2b2b2;
+    text-align: right;
+    padding: 10px;
+    line-height: 25px;
+}
+
+/* body */
+body{
+    font-family:'Yekan';
+}
+#site-body {
+    width: 1500px;
+    height: auto;
+    margin: auto;
+   
+}
+
+/* header */
+header {
+    width: 1500px;
+    height: 60px;
+    position: fixed;
+    background-image: linear-gradient(rgb(250, 250, 250), rgb(255, 255, 255));
+}
+
+/* navbar */
+ul li {
+    float: right;
+    list-style-type: none;
+    margin: 30px 20px 0px 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+
+ul li a:hover {
+    color: #b3a5ff;
+}
+
+.nav-s {
+    color: #b3a5ff;
+}
+
+.nav-s:hover {
+    color: #8772ff;
+}
+
+/* logo */
+#logo {
+    width: 100px;
+    float: right;
+    margin: 15px 60px 0px 120px;
+}
+
+/* user image */
+#user-img {
+    width: 25px;
+    margin: 15px 5px 0px 60px;
+}
+
+/* login and membership button */
+.log-mem {
+    text-decoration: none;
+    color: #b3a5ff;
+    font-size: 16px;
+}
+
+.log-mem:hover {
+    color: #8772ff;
+}
+
+/* site-banner */
+.top-banner {
+    margin: 120px;
+    width: 550px;
+}
+
+#left-box {
+    float: left;
+    width: 750px;
+    height: 550px;
+}
+
+#right-box {
+    float: right;
+    width: 750px;
+    height: 550px;
+    text-align: right;
+}
+
+/* button */
+.view-w-s {
+    padding: 20px 30px 20px 30px;
+    border-radius: 15px;
+    background-color: #cfc7ff;
+    border-color: white;
+    color: rgb(255, 255, 255);
+    margin-right: 60px;
+    margin-top: 20px;
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 5px 5px 30px 5px rgb(237, 237, 237);
+}
+
+.view-w-s:hover {
+    background-color: #b9acff;
+    color: #ffffff;
+    border-style: inset;
+}
+
+.a-and-o {
+    padding: 20px 30px 20px 30px;
+    border-radius: 15px;
+    margin-right: 60px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-color: #b3a5ff;
+    text-decoration: none;
+    color: #b3a5ff;
+    box-shadow: 5px 5px 30px 5px rgb(237, 237, 237);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.a-and-o:hover {
+    background-color: #b9acff;
+    color: rgb(255, 255, 255);
+    border-style: inset;
+}
+
+/* arrow-box */
+#arrow {
+    width: 1500px;
+    height: 250px;
+    float: right;
+}
+
+/* squar */
+.Square-img {
+    width: 25px;
+    float: right;
+    margin: 0px 0px 0px 8px;
+}
+
+/* servises-style */
+#servises {
+    width: 1500px;
+    height: 450px;
+    float: left;
+}
+
+/* articles-style */
+#articles {
+    width: 1500px;
+    height: 450px;
+    float: right;
+    margin-top: 100px;
+}
+
+/* articles and  servises boxs*/
+.a-box,
+.s-box {
+    margin-top: 50px;
+    width: 300px;
+    height: 350px;
+    float: right;
+    margin-right: 60px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 5px 5px 30px 5px rgb(237, 237, 237);
+}
+.s-box p,
+.a-box p{
+    text-align: justify;
+}
+.a-box:hover,
+.s-box:hover {
+    box-shadow: 5px 5px 30px 5px rgb(210, 210, 210);
+}
+
+.a-box img,
+.s-box img {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+}
+.s-box p ,.a-box p{
+    font-size: 15px;
+}
+/* Frequently Asked Questions */
+#f-a-Questions {
+    width: 1500px;
+    height: auto;
+    float: right;
+    margin-top: 100px;
+}
+
+/* -------f-a-q----------- */
+.faq-parswp {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.hr-line {
+    width: 1440px;
+    margin: auto;
+}
+
+/* Open and close style buttons */
+.faq-page {
+    color: #525252;
+    cursor: pointer;
+    padding: 30px 20px;
+    width: 1400px;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: auto;
+}
+
+.faq-parswp p {
+    padding-right: 30px;
+}
+
+.faq-body {
+    margin: auto;
+    width: 92%;
+    padding: auto;
+
+}
+
+.faq-parswp h1 {
+    font-size: 16px;
+}
+
+.active,
+.faq-page:hover {
+    background-color: #f7f7ff;
+}
+
+.faq-body {
+    padding: 0 18px;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    overflow: hidden;
+}
+
+.faq-page:after {
+    content: '\002B';
+    /* Unicode character for "plus" sign (+) */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+    margin-right: 35px;
+}
+
+.active:after {
+    content: "\002D";
+    /* Unicode character for "minus" sign (-) */
+}
+
+
+/* footer-box */
+#footer-box {
+    width: 1500px;
+    height: 450px;
+    float: right;
+}
+
+/* right box and middel box and left box */
+#footer-box .f-box {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+/* about us text - right box item */
+.f-box h3 {
+    margin: 80px 0px 0px 240px;
+    color: #907cff;
+}
+
+/* footer-text */
+.f-t-1 {
+    font-size: 18px;
+    margin: 0px 168px 0px 0px;
+    color: #b3a5ff;
+}
+
+.f-t-2 {
+    font-size: 15px;
+    padding: 0px 68px 0px 0px;
+    color: rgb(115, 115, 115);
+    direction: rtl;
+    text-align: justify;
+}
+
+/* logo image-footer */
+.f-logo {
+    width: 110px;
+    margin: 80px 0px 0px 330px;
+    position: absolute;
+}
+
+
+/* site-part-middel box*/
+.part-s {
+    margin: 100px 170px 0px 0px;
+    font-size: 18px;
+    color: #b3a5ff;
+}
+
+.f-box a {
+    text-decoration: none;
+    display: block;
+    color: #525252;
+    text-align: right;
+    margin: 0px 200px 0px 0px;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* circle - middel box*/
+.circle {
+    margin: 9px 180px 0px 0px;
+    width: 10px;
+    float: right;
+}
+
+/* links-left box */
+.links {
+    font-size: 18px;
+    color: #b3a5ff;
+    display: inline;
+    float: right;
+    margin: 100px 60px 0px 0px;
+
+}
+
+/* telegram-instagram-whatsapp-icon - left box */
+.t-i-w-icon img {
+    width: 30px;
+    float: right;
+    margin: 108px 15px 0px 0px;
+}

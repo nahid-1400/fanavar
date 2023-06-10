@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="yalda fazel">
+    <link href="{% static 'fanavar/css/contact-us.css' %}" rel="stylesheet">
+    <title>تماس با ما</title>
+</head>
+
+<body>
+
+    <div id="site-body">
+        <!-- header -->
+        {% include 'fanavar/shared/header_base.html' %}
+
+        <!-- about us - header -->
+        <p class="a-header">تماس با ما</p>
+
+        <!-- contact us -->
+        <article class="con-us" dir="rtl">
+
+            <img src="{% static 'fanavar/image/con-us.jpg' %}" alt="">
+
+            <p style="font-size: 22px; margin: 200px 0px 10px 0px; display: inline-block;">آماده پاسخگویی</p>
+            <p style="color: #626262; margin: 0px 20px 10px 0px;">مشاورین ما به صورت تمام وقت آماده پاسخگویی به سوالات
+                شما عزیزان هستند.</p>
+
+
+            <img src="{% static 'fanavar/image/communications.png' %}" style="width: 25px; height: 25px; margin:5px 0px 0px 0px;">
+            <a href="tel:+989121234567"
+                style="margin: 10px 10px 0px 225px; display: inline-block; color: #b3a5ff; text-decoration: none;">مشاوره
+                و خرید 09125896314
+            </a>
+
+            <br>
+            <img src="{% static 'fanavar/image/communications.png' %}" style="width: 25px; height: 25px; margin:7px 0px 10px 0px;">
+            <a href="tel:+989121234567"
+                style="margin: 10px 10px 0px 225px; display: inline-block; color: #b3a5ff; text-decoration: none;">پشتیبانی
+                0215896347
+            </a>
+        </article>
+
+
+        <!-- location box -->
+        <article class="location-box" dir="rtl">
+
+            <!-- location-code -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.19771937437054!2d48.49274173480522!3d36.6686706114774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1685829592745!5m2!1sen!2s"
+                width="400" height="250" style="border:0; float: right; margin: 20px 100px 0px 120px;" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade;"></iframe>
+
+                <img src="{% static 'fanavar/image/map.png' %}" style="width: 30px; height: 30px;">
+                <p style="font-size: 22px; margin: 50px 0px 10px 0px; display: inline-block;">آدرس</p>
+                
+                <p style="color: #626262; margin: 10px 0px 10px 0px;">زنجان، بلوار آزادی، خ فداییان اسلام، طبقه بالای اتوگالری وزرا، شرکت فناور</p>
+
+        </article>
+
+
+        <!-- footer-box -->
+        {% include 'fanavar/shared/footer_base.html' %}
+
+    </div>
+    
+    </body>
+
+		<!-- footer-box -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        {% load sweetify %}
+        {% sweetify %}
+        </html>

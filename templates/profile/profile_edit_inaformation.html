@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/profile-edit-user-information.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>ویراایش اطلاعات  </title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- right box -->
+    {% include 'profile/shared/profile_sidbar.html' %}
+
+
+ <!-- main box -->
+ <section id="main-box" dir="rtl" style="padding-bottom: 20%;">
+
+    <!-- new-information -->
+    <p class="caption">اطلاعات کاربری</p>
+    <div class="n-p-form">
+        <form method="post" enctype="multipart/form-data">  
+            {% csrf_token %}
+            {{ form.first_name }}
+            {% for error in form.first_name.errors %}
+            <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            {{ form.last_name }}
+            {% for error in form.last_name.errors %}
+            <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            {{ form.phone_number }}
+            {% for error in form.phone_number.errors %}
+            <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            {{ form.profile_image }}
+            {% for error in form.profile_image.errors %}
+            <p style="color: red;">{{ error }}</p>
+            {% endfor %}
+            <button  type="submit">ثبت</button>
+        </form>
+
+    </div>
+    
+    
+</section>
+
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </html>

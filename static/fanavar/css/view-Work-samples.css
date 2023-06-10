@@ -1,0 +1,263 @@
+/* Webfont: Yekan */
+@font-face {
+	font-family: 'Yekan';
+	src:	url('./Yekan-font-master/Yekan.eot'); /* IE9 Compat Modes */
+	src:	url('./Yekan-font-master/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('./Yekan-font-master/Yekan.woff2') format('woff2'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.woff') format('woff'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.otf') format('opentype'), /* Open Type Font */	
+			url('./Yekan-font-master/Yekan.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+body{
+    font-family: 'Yekan';
+}
+#site-body {
+    width: 1500px;
+    height: 700px;
+    margin: auto;
+    font-family: 'Yekan';
+}
+
+/* header */
+header {
+    width: 1500px;
+    height: 60px;
+    background-image: linear-gradient(rgb(243, 243, 243), rgb(255, 255, 255));
+}
+
+/* navbar */
+ul li {
+    float: right;
+    list-style-type: none;
+    margin: 30px 20px 0px 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+
+ul li a:hover {
+    color: #b3a5ff;
+}
+
+.nav-s {
+    color: #b3a5ff;
+}
+
+.nav-s:hover {
+    color: #8772ff;
+}
+
+/* logo */
+#logo {
+    width: 100px;
+    float: right;
+    margin: 15px 70px 0px 120px;
+}
+
+.color-n {
+    color: #b3a5ff;
+}
+
+.color-n:hover {
+    color: #8772ff;
+}
+
+/* user image */
+#user-img {
+    width: 25px;
+    margin: 19px 5px 0px 60px;
+}
+
+/* login and membership button */
+.log-mem {
+    text-decoration: none;
+    color: #b3a5ff;
+}
+
+.log-mem:hover {
+    color: #6559a7;
+}
+
+/* view work samples-header */
+.v-w-s-header {
+    font-size: 30px;
+    text-align: center;
+    margin: 50px 0px 0px 0px;
+    color: #ffffff;
+    padding: 10px 0px 10px 0px;
+    background-color: #b3a5ff;
+}
+
+.Square-img {
+    width: 25px;
+    float: right;
+}
+
+/* web design-boxs and Logo design-boxs  and Poster design-boxs*/
+.w-d-box1,
+.w-d-box2,
+.l-d-box1,
+.l-d-box2,
+.p-d-box1,
+.p-d-box2 {
+    width: 1500px;
+    float: right;
+    height: 470px;
+}
+
+/* web design-boxs */
+.w-d,
+.l-d,
+.p-d {
+    width: 280px;
+    height: 420px;
+    float: right;
+    margin-top: 50px;
+    margin-right: 75px;
+    border-radius: 10px;
+    background-color: white;
+    font-size: 15px;
+    color: #414141;
+    text-align: center;
+    box-shadow: 5px 5px 30px 5px rgb(237, 237, 237);
+}
+
+.w-d:hover,
+.l-d:hover,
+.p-d:hover {
+    box-shadow: 5px 5px 30px 5px rgb(210, 210, 210);
+}
+
+.w-d-box2,
+.l-d-box2,
+.p-d-box2 {
+    margin-bottom: 50px;
+}
+
+.img-box {
+    width: 280px;
+    height: 250px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+/* user-image-boxs */
+.s-user {
+    width: 40px;
+    height: 40px;
+    background-color: #f2f2f2;
+    border-radius: 50px;
+    margin: auto;
+}
+
+/* comment */
+.comment {
+    color: #999999;
+    margin: 10px 0px 0px 0px;
+}
+
+/* user image */
+.user-i {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+/* footer-box */
+#footer-box {
+    width: 1500px;
+    height: 450px;
+    float: right;
+}
+
+/* right box and middel box and left box */
+#footer-box .f-box {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+/* about us text - right box item */
+.f-box h3 {
+    margin: 80px 0px 0px 240px;
+    color: #907cff;
+}
+
+/* footer-text */
+.f-t-1 {
+    font-size: 18px;
+    margin: 0px 0px 0px 120px;
+    color: #b3a5ff;
+    display: inline;
+}
+
+.f-t-2 {
+    font-size: 15px;
+    padding: 20px 68px 0px 0px;
+    color: rgb(115, 115, 115);
+    direction: rtl;
+    text-align: justify;
+    line-height: 25px;
+}
+
+/* logo image-footer */
+.f-logo {
+    width: 110px;
+    margin: 80px 0px 0px 330px;
+    position: absolute;
+}
+
+
+/* site-part-middel box*/
+.part-s {
+    margin: 100px 0px 5px 215px;
+    font-size: 18px;
+    color: #b3a5ff;
+}
+
+.f-box a {
+    text-decoration: none;
+    display: block;
+    color: #525252;
+    text-align: right;
+    margin: 0px 200px 0px 0px;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* circle - middel box*/
+.circle {
+    margin: 9px 180px 0px 0px;
+    width: 10px;
+    float: right;
+}
+
+/* links-left box */
+.links {
+    font-size: 18px;
+    color: #b3a5ff;
+    display: inline;
+    float: right;
+    margin: 110px 70px 0px 0px;
+
+}
+
+/* telegram-instagram-whatsapp-icon - left box */
+.t-i-w-icon img {
+    width: 30px;
+    float: right;
+    margin: 108px 15px 0px 0px;
+}

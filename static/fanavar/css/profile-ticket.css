@@ -1,0 +1,267 @@
+/* Webfont: Yekan */
+@font-face {
+	font-family: 'Yekan';
+	src:	url('./Yekan-font-master/Yekan.eot'); /* IE9 Compat Modes */
+	src:	url('./Yekan-font-master/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('./Yekan-font-master/Yekan.woff2') format('woff2'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.woff') format('woff'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.otf') format('opentype'), /* Open Type Font */	
+			url('./Yekan-font-master/Yekan.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+#site-body {
+    width: 1500px;
+    height: 750px;
+    margin: auto;
+    font-family:'Yekan';
+}
+
+/* header */
+header {
+    width: 1500px;
+    height: 60px;
+    background-image: linear-gradient(rgb(243, 243, 243), rgb(255, 255, 255));
+    margin-bottom: 10px;
+}
+
+/* navbar */
+ul li {
+    float: right;
+    list-style-type: none;
+    margin: 30px 20px 0px 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 17px;
+    color: black;
+}
+
+ul li a:hover {
+    color: #b3a5ff;
+}
+
+.nav-s {
+    color: #b3a5ff;
+}
+
+.nav-s:hover {
+    color: #7f69fd;
+}
+
+/* logo */
+#logo {
+    width: 100px;
+    float: right;
+    margin: 15px 70px 0px 120px;
+}
+
+.color-n {
+    color: #b3a5ff;
+}
+
+.color-n:hover {
+    color: #6559a7;
+}
+
+/* user image */
+#user-img {
+    width: 25px;
+    margin: 19px 5px 0px 60px;
+}
+
+/* login and membership button */
+.log-mem {
+    text-decoration: none;
+    color: #b3a5ff;
+}
+
+.log-mem:hover {
+    color: #6559a7;
+}
+
+/* right box */
+#right-box{
+    float: right;
+    box-shadow: 5px 5px 30px 5px rgb(214, 214, 214);
+    border-radius: 10px;
+    width: 230px;
+    height: 450px;
+    margin: 100px 70px 0px 0px;
+}
+#right-box .image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #b3a5ff;
+    margin: 50px auto 0px auto;
+}
+
+#right-box .image img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+#right-box .name{
+    text-align: center;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+#right-box .u-number{
+    text-align: center;
+    color: rgb(108, 108, 108);
+    margin-top: 6px;
+}
+#right-box .u-button{
+    padding-right: 10px;
+}
+#right-box a{
+    text-decoration: none;
+    color: #3b3b3b;
+}
+#right-box .u-button:hover{
+    background-color: #e6e1ff;
+}
+/* main box */
+#main-box{
+    width: 1100px;
+    height: auto;
+    box-shadow: 5px 5px 30px 5px rgb(214, 214, 214);
+    border-radius: 10px;
+    margin: 100px 0px 0px 70px;
+    float: left;
+}
+#main-box h3{
+    margin: 50px 40px 0px;
+    display: inline-block;
+}
+/* order tabel */
+#main-box .o-tabel{
+    width: 1050px;
+    margin: 15px 30px 60px 20px;
+    border-color: #3b3b3b;
+    text-align: center;
+    border:1px solid rgb(138, 138, 138);
+}
+#main-box .o-tabel thead{
+    background-color: #b3a5ff;
+}
+#main-box .o-tabel .plus a{
+    color: #806aff;
+    text-decoration: none;
+  }
+#main-box .o-tabel tr{
+    height: 40px;
+}
+.new-ticket{
+    display: inline-block;
+    margin: 60px 890px 0px 20px;
+    color: #907cff;
+}
+
+#main-box .o-tabel .Even{
+    background-color: #f3f3f3;
+}
+
+
+
+
+
+/* footer-box */
+#footer-box {
+    width: 1500px;
+    height: 450px;
+    float: right;
+    margin-top: 50px;
+}
+
+/* right box and middel box and left box */
+#footer-box .f-box {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+/* about us text - right box item */
+.f-box h3 {
+    margin: 80px 0px 0px 240px;
+    color: #907cff;
+}
+
+/* footer-text */
+.f-t-1 {
+    font-size: 18px;
+    margin: 0px 0px 0px 120px;
+    color: #b3a5ff;
+    display: inline;
+}
+
+.f-t-2 {
+    font-size: 15px;
+    padding: 20px 68px 0px 0px;
+    color: rgb(115, 115, 115);
+    direction: rtl;
+    text-align: justify;
+    line-height: 25px;
+}
+
+/* logo image-footer */
+.f-logo {
+    width: 110px;
+    margin: 80px 0px 0px 330px;
+    position: absolute;
+}
+
+
+/* site-part-middel box*/
+.part-s {
+    margin: 100px 0px 5px 215px;
+    font-size: 18px;
+    color: #b3a5ff;
+}
+
+.f-box a {
+    text-decoration: none;
+    display: block;
+    color: #525252;
+    text-align: right;
+    margin: 0px 200px 0px 0px;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* circle - middel box*/
+.circle {
+    margin: 9px 180px 0px 0px;
+    width: 10px;
+    float: right;
+}
+
+/* links-left box */
+.links {
+    font-size: 18px;
+    color: #b3a5ff;
+    display: inline;
+    float: right;
+    margin: 110px 70px 0px 0px;
+
+}
+
+/* telegram-instagram-whatsapp-icon - left box */
+.t-i-w-icon img {
+    width: 30px;
+    float: right;
+    margin: 108px 15px 0px 0px;
+}

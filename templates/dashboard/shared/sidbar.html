@@ -1,0 +1,95 @@
+{% load static %}
+<div class="sidebar-wrapper" data-simplebar="true">
+    <div class="sidebar-header" >
+        <div >
+            <img src="{% static 'images\logo\logo-fanavar.png' %}" class="logo-icon" alt="logo icon" style="width: 115px;">
+        </div>
+        <div>
+            <h4 class="logo-text"><a href="{% url 'dashboard_user:home' %}"></a></h4>
+        </div>
+        <div class="toggle-icon ms-auto"><i class='bx bx-last-page'></i>
+        </div>
+    </div>
+    <!--navigation-->
+    <ul class="metismenu" id="menu">
+        <li>
+            <a href="{% url 'dashboard_user:home' %}">
+                <div class="parent-icon"><i class='bx bx-home'></i>
+                </div>
+                <div class="menu-title">داشبورد</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:servisees-dashboard' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\cast.svg' %}">
+                </div>
+                <div class="menu-title">خدمات</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:article-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\layout-text-window.svg' %}">
+                </div>
+                <div class="menu-title">مقالات</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:category-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\grid-3x3.svg' %}">
+                </div>
+                <div class="menu-title">دسته بندی مقالات </div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:order-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\cart.svg' %}">
+                </div>
+                <div class="menu-title">سفارشات</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:demand-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\person-workspace.svg' %}">
+                </div>
+                <div class="menu-title"> درخواست ها</div>
+            </a>
+        </li>
+       
+        <li>
+            <a href="{% url 'dashboard_user:user-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\people-fill.svg' %}">
+                </div>
+                <div class="menu-title">کاربران</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:ticket-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\chat-right.svg' %}">
+                </div>
+                <div class="menu-title">تیکت کاربران</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:question-list' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\question-circle.svg' %}">
+                </div>
+                <div class="menu-title">سوالات متداول</div>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'dashboard_user:logout-user' %}">
+                <div class="parent-icon"><img src="{% static 'dashboard\svg\box-arrow-left.svg' %}">
+                </div>
+                <div class="menu-title">خروج</div>
+            </a>
+        </li>
+            </ul>
+        </li>
+    
+       
+      
+      
+      
+    </ul>
+    <!--end navigation-->
+</div>

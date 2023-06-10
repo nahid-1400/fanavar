@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/profile.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>حساب کاربری</title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- right box -->
+    {% include 'profile/shared/profile_sidbar.html' %}
+
+
+    <!-- main box -->
+    <section id="main-box" dir="rtl">
+
+      <h3 style="margin:50px 30px 10px 0px">سلام {% if  request.user.first_name and request.user.last_name is not None %}
+        {{ request.user.first_name }}  {{ request.user.last_name }}
+        {% else %}
+        {{ request.user.username }}
+        {% endif %} عزیز به فناور خوش اومدی
+        ❤️</i>
+      </h3>
+
+      <p style="margin: 30px;">میخوای کسب و کارت رو گسترش بدی؟ جای درستی اومدی 👌</p>
+
+      <div class="hellp">
+        <p style="color: rgb(132, 115, 242); padding: 13px;">میتوانید از قسمت <a href="#"
+            style="color: rgb(90, 90, 90); text-decoration: none;">سفارش ها</a> تمام سفارشات ثبت شده خود را مشاهده
+          نمایید.</p>
+      </div>
+    </section>
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </html>

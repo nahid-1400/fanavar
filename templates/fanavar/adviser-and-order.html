@@ -1,0 +1,62 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/adviser-and-order.css' %}" rel="stylesheet">
+
+  <title>مشاوره | ثبت سفارش</title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- form-box -->
+    <div>
+
+      <!--form-header  -->
+      <article class="main" style="padding-bottom: 100px;">
+
+        <!--form-header  -->
+        <p class="h-form">مشاوره و سفارش پروژه</p>
+        <p dir="rtl" style="margin: 20px 20px 30px 0px; text-align: center; color: rgb(160, 160, 160);">برای دریافت مشاوره
+          و سفارش پروژه فرم زیر را پر کرده یا با مشاورین ما تماس بگیرید.</p>
+  
+        <form method="post">
+          {% csrf_token %}
+          {{ form.title }}
+          {{ form.full_name }}
+          {{ form.phone_number }}
+          {{ form.descriptions }}
+          <button type="submit">ثبت درخواست</button>
+        </form>
+  
+      </article>
+
+    <!-- phone -->
+    <a href="tel:+989121234567"
+      style="margin: 20px 0px 0px 660px; display: inline-block; color:#6559a7; text-decoration: none;">تماس با مشاورین
+      ما 09121234567</a>
+
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+  </main>
+  <script src="{% static 'fanavar/js/f-a-question.js' %}"></script>
+</div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}

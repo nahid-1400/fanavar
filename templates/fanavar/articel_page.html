@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/article-page.css' %}" rel="stylesheet">
+  <title>{{ object.title }}</title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- article-header -->
+    <h2 class="a-header">{{ object.title }}</h2>
+    <hr style="width: 1375px; float: right; margin-right: 60px;">
+
+
+    <!-- article box -->
+    <article class="article-box" dir="rtl">
+
+      <!-- top-image -->
+      <img src="{{ object.image.url }}" alt="{{ object.title }}" style="width: 700px; height: 450px; margin:0px 200px 50px 0px;">
+
+      <p style="background-color:#d6d9ff; border-radius: 10px; padding: 10px;">
+       {{ object.short_descriptions|striptags|safe }}</p>
+
+      {{ object.description|safe }}
+    </article>
+
+    <!-- left box - Advertising -->
+    <a href="">
+      <aside id="l-b-advertising">
+        <img src="{% static 'fanavar/image/map-pro.png' %}" alt="" width="300px" height="200px" style="border-radius: 10px;">
+      </aside>
+    </a>
+
+    <!-- left box - new article -->
+    <aside id="l-b-new-article" dir="rtl">
+
+      <h4 style="padding:10px;">جدیدترین مقالات</h4>
+      <hr style="height: 2px; background-color: #b3a5ff; border-style: none;">
+        {% for articel in articels|slice:"10" %}
+      <a href="{% url 'articel-fanavar' articel.id articel.title %}"><h5>{{ articel.title }}</h5></a>
+        {% endfor %}
+    </aside>
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}
+</html>

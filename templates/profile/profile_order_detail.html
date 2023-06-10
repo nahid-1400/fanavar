@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/profile-order-page.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title> {{ object.title }} </title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- right box -->
+    {% include 'profile/shared/profile_sidbar.html' %}
+
+
+ <!-- main box -->
+ <section id="main-box" dir="rtl">
+
+    <h3>سفارش شما</h3>
+    <table class="o-tabel">
+        <thead>
+            <td>کد سفارش</td>
+            <td>نوع خدمت</td>
+            <td>عنوان سفارش</td>
+            <td>هزینه</td>
+            <td>وضعیت</td>
+            <td>زمان تحویل</td>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ object.order_code }}</td>
+                <td>{{ object.servise.title }} </td>
+                <td>{{ object.title }}</td>
+                <td>{{ object.price }}</td>
+                <td>
+                    {% if object.status == 's' %}
+                    ثبت شده
+                    {% elif object.status == 'a' %}
+                    در حال شروع آماده سازی
+                    {% elif object.status == 'p' %}
+                    شروع پروژّ'
+                    {% elif object.status == 'k' %}
+                    در حال کار روی پروژّ 
+                    {% elif object.status == 'e' %}
+                    اتمام پروژّ
+                    {% endif %}  
+                </td>
+                <td>{{ object.possible_delivery_time }}</td>
+
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <h3 style="margin-top: 20px;">توضیحات :</h3>
+    <p class="comment">{{ object.description|striptags|safe }}</p>
+</section>
+
+
+
+
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </html>

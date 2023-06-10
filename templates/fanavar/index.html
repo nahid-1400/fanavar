@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="yalda fazel">
+    <link rel="stylesheet" href="{% static 'fanavar/style.css' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'fanavat/image/logo/short-logo.png' %}">
+    <title>سایت فناور | سفارش طراحی سایت حرفه ای</title>
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+  </head>
+  
+<body>
+
+  <div id="site-body">
+
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+    <main>
+
+      <!-- Banner photo in the left box -->
+      <article id="left-box">
+        <img src="{% static 'fanavar/image/banner/banner-img.png' %}" alt="Fanavar" class="top-banner">
+      </article>
+
+      <!-- Banner text in the right box -->
+      <article id="right-box">
+        <h1 style="font-size: 40px; margin-top: 180px; margin-right: 60px;">طراحی سایت، از صفر تا صد <br>با بهترین متد
+          جهانی</h1>
+        <p style="font-size: 18px; padding-top: 15px; line-height: 40px; color: rgb(152, 152, 152); padding-right: 60px; text-align: justify;"
+          dir="rtl">
+          داشتن وب سایت یک راه عالی برای معرفی کسب و کار شماست. یک سایت خوب به شما این امکان را میدهد تا خودتان را معرفی
+          کرده و خدمات و
+          مزایا کارتان را به مخاطب نشان دهید. همچنین موجب افزایش اعتبار کسب و کار شما و به تبع آن موجب جلب اعتماد
+          مخاطبانتان میشود.
+          مشاوران ما در طول این مسیر در کنار شما هستند تا با مناسب ترین قیمت و بهترین کیفیت شما را تا رسیدن به نتیجه
+          یاری کنند.</p>
+
+
+        <!-- adviser and  order-->
+        <a href="{% url 'demand-create' %}"><button class="a-and-o" style="margin-right: 20px;"><b>مشاوره و سفارش
+              پروژه</b></button></a>
+
+        <!-- view Work samples -->
+        <a href="{% url 'work-sampels' %}"><button class="view-w-s"><b>مشاهده نمونه کارها</b></button></a>
+      </article dir="rtl">
+
+      <!-- arrow-box -->
+      <article id="arrow">
+        <img src="{% static 'fanavar/image/arrow.png' %}" alt="Arrow" style="width: 200px; margin-left: 530px; margin-top: 40px;">
+      </article>
+
+      <!-- servises-box -->
+      <article id="servises" dir="rtl">
+
+
+        <h1 style="margin-right: 60px;">
+          <a href="{% url 'services' %}"><img src="{% static 'fanavar/image/mor.png' %}" alt="Next" width="80px" style="float: left; margin-left: 60px; "></a>
+          خدمات ما
+          <img src="{% static 'fanavar/image/s1.png' %}" class="Square-img">
+        </h1>
+
+        <!-- First box from the right -->
+        {% for servise in servises|slice:"4"%}
+        <a href="{% url 'service-fanavar' servise.id servise.title %}">
+          <section class="s-box">
+            <img src="{{ servise.image.url }}" alt="{{ servise.title }}">
+            <h1>{{ servise.title }}</h1>
+            <p>{{ servise.descriptions|striptags|truncatewords:30|safe  }}
+            </p>
+          </section>
+        </a>
+        {% endfor %}
+
+      </article>
+
+      <!-- articles-box -->
+      <article id="articles" dir="rtl">
+
+        <h1 style="margin-right: 60px;">
+          <a href="{% url 'articels' %}"><img src="{% static 'fanavar/image/mor.png' %}" alt="Next" width="80px" style="float: left; margin-left: 60px;"></a>
+          جدیدترین مقالات
+          <img src="{% static 'fanavar/image/s1.png' %}" class="Square-img">
+        </h1>
+
+        <!-- First box from the right -->
+        {% for article in articles|slice:"4" %}
+        <a href="{% url 'articel-fanavar' article.id article.title %}">
+          <section class="a-box">
+            <img src="{{ article.image.url }}" alt="">
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.short_descriptions|striptags|truncatewords:18|safe  }}
+            </p>
+          </section>
+        </a>
+        {% endfor %}
+      </article>
+
+      <!-- Frequently Asked Questions -->
+      <article id="f-a-Questions" dir="rtl">
+
+        <img src="{% static 'fanavar/image/s1.png' %}" class="Square-img" style="margin-right: 60px;">
+        <h1 style="padding-bottom: 50px;">سوالات متداول</h1>
+
+        <section class="faq-parswp">
+
+          {% for question in questions %}
+          <div class="faq-one">
+            <!-- faq question -->
+            <h1 class="faq-page">{{ question.title }}</h1>
+            <!-- faq answer -->
+            <div class="faq-body">
+              <p>
+                {{ question.answer }}
+              </p>
+            </div>
+          </div>
+          <hr class="hr-line">
+         {% endfor %}
+       
+          </div>
+        </section>
+      </article>
+
+      <!-- footer-box -->
+      {% include 'fanavar/shared/footer_base.html' %}
+    </main>
+    <script src="{% static 'fanavar/js/f-a-question.js' %}"></script>
+  </div>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}

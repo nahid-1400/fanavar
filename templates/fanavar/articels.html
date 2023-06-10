@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/articles.css' %}" rel="stylesheet">
+  <title>مقالات</title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+    <!-- articles-header -->
+    <p class="a-header">مقالات</p>
+
+    <!-- articles-boxs - Line 1 -->
+    <article class="a-line1" dir="rtl">
+
+      {% for articel in object_list %}
+      <a href="{% url 'articel-fanavar' articel.id articel.title %}">
+        <section class="a-box">
+          <img src="{{ articel.image.url }}" alt="{{ articel.title }}" class="img-box">
+          <h3>{{ articel.title }}</h3>
+            <p class="comment">{{  articel.short_descriptions|striptags|truncatewords:40|safe }}</p>
+        </section>
+      </a>
+      {% endfor %}
+
+
+    
+    </article>
+
+ 
+    <!-- pageenation -->
+    <div class="pagination">
+    {% if page_obj.has_previous %}
+      <a href="{% url 'articels' page_obj.previous_page_number %}">&laquo;</a>
+      {% endif %}
+      {% for page in page_obj.paginator.page_range  %}
+      {% if page == page_obj.number %}
+      <a href="{% url 'articels' page %}" class="active">{{ page }}</a>
+      {% else %}
+      <a href="{% url 'articels' page %}">{{ page }}</a>
+      {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <a href="{% url 'articels' page_obj.next_page_number %}">&raquo;</a>
+      {% endif %}
+    </div>
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}
+</html>

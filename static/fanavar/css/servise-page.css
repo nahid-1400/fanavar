@@ -1,0 +1,331 @@
+/* Webfont: Yekan */
+@font-face {
+    font-family: 'Yekan';
+    src: url('./Yekan-font-master/Yekan.eot');
+    /* IE9 Compat Modes */
+    src: url('./Yekan-font-master/Yekan.eot?#iefix') format('embedded-opentype'),
+        /* IE6-IE8 */
+        url('./Yekan-font-master/Yekan.woff2') format('woff2'),
+        /* Modern Browsers */
+        url('./Yekan-font-master/Yekan.woff') format('woff'),
+        /* Modern Browsers */
+        url('./Yekan-font-master/Yekan.otf') format('opentype'),
+        /* Open Type Font */
+        url('./Yekan-font-master/Yekan.ttf') format('truetype');
+    /* Safari, Android, iOS */
+    font-weight: normal;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    font-display: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+#site-body {
+    width: 1500px;
+    height: 700px;
+    margin: auto;
+    font-family: 'Yekan';
+}
+
+/* header */
+header {
+    width: 1500px;
+    height: 60px;
+    background-image: linear-gradient(rgb(243, 243, 243), rgb(255, 255, 255));
+}
+
+/* navbar */
+ul li {
+    float: right;
+    list-style-type: none;
+    margin: 30px 20px 0px 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 17px;
+    color: black;
+}
+
+ul li a:hover {
+    color: #b3a5ff;
+}
+
+.nav-s {
+    color: #b3a5ff;
+}
+
+.nav-s:hover {
+    color: #7f69fd;
+}
+
+/* logo */
+#logo {
+    width: 100px;
+    float: right;
+    margin: 15px 70px 0px 120px;
+}
+
+.color-n {
+    color: #b3a5ff;
+}
+
+.color-n:hover {
+    color: #6559a7;
+}
+
+/* user image */
+#user-img {
+    width: 25px;
+    margin: 19px 5px 0px 60px;
+}
+
+/* login and membership button */
+.log-mem {
+    text-decoration: none;
+    color: #b3a5ff;
+}
+
+.log-mem:hover {
+    color: #6559a7;
+}
+
+/* servise-header */
+.a-header {
+    font-size: 30px;
+    text-align: center;
+    margin: 50px 0px 30px 0px;
+    color: #ffffff;
+    padding: 8px 0px 8px 0px;
+    background-color: #b3a5ff;
+}
+
+/* left box */
+.left-box {
+    float: left;
+    width: 600px;
+    height: 430px;
+}
+
+/* right box */
+.right-box {
+    float: right;
+    width: 900px;
+    height: 430px;
+}
+
+/* order box */
+.order-box {
+    width: 1500px;
+    height: 300px;
+    float: right;
+}
+
+/* button */
+.a-and-o {
+    padding: 20px 30px 20px 30px;
+    border-radius: 15px;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ffffff;
+    border-color: #b3a5ff;
+    text-decoration: none;
+    color: #b3a5ff;
+    margin: 20px 60px 20px 0px;
+    font-family: 'Yekan';
+    box-shadow: 5px 5px 30px 5px rgb(237, 237, 237);
+}
+
+.a-and-o:hover {
+    background-color: #b9acff;
+    color: rgb(255, 255, 255);
+    border-style: inset;
+}
+
+
+
+/* slider box */
+.slider-box{
+    float: left;
+    width: 1500px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+/* slider button- left and right */
+.wrapper {
+    max-width: 1400px;
+    position: relative;
+    margin: auto;
+  }
+
+  /* button style */
+  .wrapper i {
+    top: 200px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    font-size: 1.25rem;
+    position: absolute;
+    text-align: center;
+    line-height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+  }
+  .wrapper i:first-child{
+    left: -15px;
+  }
+  .wrapper i:last-child{
+    right: -39px;
+  }
+
+  /* slider-box */
+  .wrapper .carousel{
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% / 4) - 12px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    border-radius: 8px;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    height: 400px;
+    margin-left: 60px;
+  }
+
+  /* scrollbar hide */
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+
+  .carousel :where(.card, .img) {
+    display: flex;
+    align-items: center;
+  }
+  .carousel .card {
+    scroll-snap-align: start;
+    height: 350px;
+    width: 265px;
+    list-style: none;
+    cursor: pointer;
+    padding-bottom: 15px;
+    flex-direction: column;
+    border-radius: 8px;
+    box-shadow: 2px 3px 5px rgba(117, 117, 117, 0.23);
+  }
+  
+  .carousel .img img {
+    width: 265px;
+    height: 190px;
+    border-radius: 10px 10px 0px 0px;
+  }
+  .carousel .card h2 {
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .carousel .card p {
+    color: #949494;
+    font-size:15px;
+    text-align:justify;
+    padding: 10px;
+  }
+  
+
+
+
+
+/* footer-box */
+#footer-box {
+    width: 1500px;
+    height: 450px;
+    float: right;
+}
+
+/* right box and middel box and left box */
+#footer-box .f-box {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+/* about us text - right box item */
+.f-box h3 {
+    margin: 80px 0px 0px 240px;
+    color: #907cff;
+}
+
+/* footer-text */
+.f-t-1 {
+    font-size: 18px;
+    margin: 0px 0px 0px 120px;
+    color: #b3a5ff;
+    display: inline;
+}
+
+.f-t-2 {
+    font-size: 15px;
+    padding: 20px 68px 0px 0px;
+    color: rgb(115, 115, 115);
+    direction: rtl;
+    text-align: justify;
+    line-height: 25px;
+}
+
+/* logo image-footer */
+.f-logo {
+    width: 110px;
+    margin: 80px 0px 0px 330px;
+    position: absolute;
+}
+
+
+/* site-part-middel box*/
+.part-s {
+    margin: 100px 0px 5px 215px;
+    font-size: 18px;
+    color: #b3a5ff;
+}
+
+.f-box a {
+    text-decoration: none;
+    display: block;
+    color: #525252;
+    text-align: right;
+    margin: 0px 200px 0px 0px;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* circle - middel box*/
+.circle {
+    margin: 9px 180px 0px 0px;
+    width: 10px;
+    float: right;
+}
+
+/* links-left box */
+.links {
+    font-size: 18px;
+    color: #b3a5ff;
+    display: inline;
+    float: right;
+    margin: 110px 70px 0px 0px;
+
+}
+
+/* telegram-instagram-whatsapp-icon - left box */
+.t-i-w-icon img {
+    width: 30px;
+    float: right;
+    margin: 108px 15px 0px 0px;
+}

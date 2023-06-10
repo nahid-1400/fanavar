@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/profile-ticket.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>تیکت ها </title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- right box -->
+    {% include 'profile/shared/profile_sidbar.html' %}
+
+
+ <!-- main box -->
+ <section id="main-box" dir="rtl">
+
+    <h3>همه تیکت ها</h3>
+    
+    <a href="./profile-add-ticket.html" class="new-ticket" title="افزودن تیکت">
+        <i class="fa fa-plus-square" aria-hidden="true"></i>
+    </a>
+    {% if tickets.count > 0 %}
+    <table class="o-tabel">
+        <thead>
+            <td style="width: 80px;">کد تیکت</td>
+            <td style="width: 80px;">نوع تیکت</td>
+            <td style="width: 100px;">عنوان تیکت</td>
+            <td style="width: 400px;">توضیحات</td>
+            <td style="width: 100px;">وضعیت تیکت</td>
+            <td>تاریخ </td>
+            <td style="width: 100px;">مشاهده تیکت</td>
+            
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.ticket_code }}</td>
+                <td>
+                    {% if ticket.subject == 't' %}
+                    درخواست اعمال تغیرات
+                    {% elif ticket.subject == 'm' %}
+                    درخواست مشاوره
+                    {% elif ticket.subject == 's' %}
+                    درخواست سفارش
+                    {% elif ticket.subject == 'g' %}
+                    گزارش مشکل
+                    {% elif ticket.subject == 'd' %}
+                    سایر
+                    {% endif %}  
+                </td>
+                <td>{{ ticket.title }}</td>
+                <td style="text-align: right; padding: 5px;" class="comment">{{ ticket.descriptions|striptags|truncatewords:15|safe }}</td>
+                <td>
+                   {% if ticket.status == 'o' %}
+                   باز
+                   {% else %}
+                    بسته
+                   {% endif %}
+                </td>
+                <td>{{ ticket.created }}</td>
+
+                <td class="plus">
+                    <a href="{% url 'profile:profile-chat-ticket' ticket.id %}" title="مشاهده پاسخ">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+    {% else %}
+    <div>
+        <p style="color: rgb(132, 115, 242); padding: 13px;background-color: #E6E1FF;margin: 20px;border-radius: 5px;">تیکتی جهت نمایش وجود ندارد.</p>
+    </div>
+    {% endif %}
+
+</section>
+
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </html>

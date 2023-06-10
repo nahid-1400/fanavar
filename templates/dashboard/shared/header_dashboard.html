@@ -1,0 +1,55 @@
+{% load static %}
+<header>
+    <div class="topbar d-flex align-items-center">
+        <nav class="navbar navbar-expand">
+            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
+            </div>
+            <div class="user-box dropdown">
+                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% if user.profile_image %} 
+                    <img src="{{ request.user.profile_image.url }}" class="user-img" alt="{{ user.username }}">
+                    {% else %}
+                    <img src="{% static 'images\avatar.jpg' %}" class="user-img" alt="{{ user.username }}">
+                    {% endif %}
+                    <div class="user-info ps-3">
+                        <p class="user-name mb-0">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                        {% if user.is_superuser %}
+                        <p class="designattion mb-0" style="float: right;padding-left: 5px;">ادمین</p>
+                        {% endif %}
+                        {% if user.is_author %}
+                        <p class="designattion mb-0" style="float: right;padding-left: 5px;">نویسنده</p>
+                        {% endif  %}
+                        {% if user.colleague %}
+                        <p class="designattion mb-0" style="float: right;padding-left: 5px;">کارمند</p>
+                        {% endif  %}
+                            {% if user.job is not None %}
+                                {% for job in user.job.all|slice:"1" %}
+                                <p class="designattion mb-0">{{ job.title}}</p>
+                            {% endfor %}
+                            {% endif %}                    </div>
+                </a>
+             
+            </div>
+
+       
+                    <li class="nav-item dropdown dropdown-large">
+                        
+                           
+                            <div class="header-notifications-list">
+                                </div>
+                         
+                    </li>
+                    <li class="nav-item dropdown dropdown-large">
+                       
+                           
+                            <div class="header-message-list">
+
+                            </div>
+                    </li>
+                </ul>
+            </div>
+          
+        </nav>
+    </div>
+</header>

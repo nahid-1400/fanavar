@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="yalda fazel">
+    <link href="{% static 'fanavar/css/about-us.css' %}" rel="stylesheet">
+    <title>درباره ما</title>
+</head>
+
+<body>
+
+    <div id="site-body">
+        <!-- header -->
+        {% include 'fanavar/shared/header_base.html' %}
+
+        <!-- about us - header -->
+        <p class="a-header">درباره فناور</p>
+
+        <article dir="rtl">
+
+
+
+            <!-- The first paragraph -->
+            <img src="{% static 'fanavar/image/s1.png' %}" alt="" width="30px" style="float: right; margin: 50px 60px 0px 5px;">
+
+            <h2 class="header-us">داستان ما</h2>
+
+            <p class="text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                است، چاپگرها و متون
+                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
+                متنوع
+                با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                جامعه
+                و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و
+                فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                راهکارها،
+                و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                اهل
+                دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+
+
+
+
+            <!-- The second paragraph -->
+            <img src="{% static 'fanavar/image/s1.png' %}" alt="" width="30px" style="float: right; margin: 50px 60px 0px 5px;">
+
+            <h2 class="header-us">هدف ما</h2>
+
+            <p class="text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                است، چاپگرها و متون
+                بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای
+                متنوع
+                با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                جامعه
+                و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و
+                فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                راهکارها،
+                و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                اهل
+                دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+
+
+
+            <!-- our team -->
+            <img src="{% static 'fanavar/image/s1.png'  %}" alt="" width="30px" style="float: right; margin: 50px 60px 0px 5px;">
+
+            <h2 class="header-us">تیم ما</h2>
+
+        </article>
+
+        <article dir="rtl" class="team-box">
+
+            <!-- box-1 -->
+            <section class="team-members" style="margin-right: 150px;">
+                <img src="{% static 'fanavar/image/user4.png' %}" alt="" class="img-us">
+
+                <!-- team-members-information -->
+                <div class="text-t-m">
+
+                    <!-- mem- name and job -->
+                    <h3 class="mem-name">یلدا فاضل</h3>
+                    <p class="mem-job">پادو </p>
+
+                </div>
+            </section>
+
+            <section class="team-members">
+                <img src="{% static 'fanavar/image/user2.png' %}" alt="" class="img-us">
+
+                <!-- team-members-information -->
+                <div class="text-t-m">
+
+                    <!-- mem- name and job -->
+                    <h3 class="mem-name">فرداد پارسا</h3>
+                    <p class="mem-job">سئو کار</p>
+
+                </div>
+            </section>
+
+            <section class="team-members">
+                <img src="{% static 'fanavar/image/user1.png' %}" alt="" class="img-us">
+
+                <!-- team-members-information -->
+                <div class="text-t-m">
+
+                    <!-- mem- name and job -->
+                    <h3 class="mem-name">ناهید مردی</h3>
+                    <p class="mem-job">ارشد</p>
+
+                </div>
+            </section>
+
+            <section class="team-members">
+                <img src="{% static 'fanavar/image/user4.png' %}" alt="" class="img-us">
+
+                <!-- team-members-information -->
+                <div class="text-t-m">
+
+                    <!-- mem- name and job -->
+                    <h3 class="mem-name">نگین عظیمی</h3>
+                    <p class="mem-job">خدمتکار </p>
+
+                </div>
+            </section>
+
+            <section class="team-members">
+                <img src="{% static 'fanavar/image/user3.png' %}" alt="" class="img-us">
+
+                <!-- team-members-information -->
+                <div class="text-t-m">
+
+                    <!-- mem- name and job -->
+                    <h3 class="mem-name">فاطمه اکبری </h3>
+                    <p class="mem-job">منشی</p>
+
+                </div>
+            </section>
+
+        </article>
+
+        <article dir="rtl">
+            <img src="{% static 'fanavar/image/s1.png' %}" alt="" width="30px" style="float: right; margin: 50px 60px 0px 5px;">
+
+            <h2 class="header-us">گواهینامه ها</h2>
+
+            <section>
+                <img src="{% static 'fanavar/image/com.jpg' %}" alt="" class="img-Certificate" style="margin-right: 120px;">
+            </section>
+
+            <section>
+                <img src="{% static 'fanavar/image/e-nem.png' %}" alt="" class="img-Certificate">
+            </section>
+
+            <section>
+                <img src="{% static 'fanavar/image/nem.jpg' %}" alt="" class="img-Certificate">
+            </section>
+
+        </article>
+
+
+
+
+
+        <!-- footer-box -->
+        {% include 'fanavar/shared/footer_base.html' %}
+
+	</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}
+</html>

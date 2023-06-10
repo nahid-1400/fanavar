@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="yalda fazel">
+	<link href="{% static 'fanavar/css/login-sign up.css' %}" rel="stylesheet">
+	<title>ورود | ثبت نام</title>
+</head>
+
+<body>
+
+	<div id="site-body">
+		<!-- header -->
+		{% include 'fanavar/shared/header_base.html' %}
+
+
+		<div class="main" dir="rtl">
+			<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form method="post">
+					<label for="chk" aria-hidden="true">ثبت نام</label>
+					{% csrf_token %}
+					{{ signup_form.username }}
+					{% for error in signup_form.username.errors %}
+						<p style="margin-right:60px;color: red;margin-top: -20px;margin-bottom: -20px;">{{ error }}</p>
+						{% endfor %}
+					{{ signup_form.phone_number }}
+					{%for error in signup_form.phone_number.errors %}
+					<p style="margin-right:60px;color: red;margin-top: -20px;margin-bottom: -20px;">{{ error }}</p>
+						{% endfor %}
+					{{ signup_form.password }}
+					{%for error in signup_form.password.errors %}
+					<p style="margin-right:60px;color: red;margin-top: -20px;margin-bottom: -10px;">{{ error }}</p>
+						{% endfor %}
+					<button type="submit" name='siginup_btn'>ثبت نام</button>
+				</form>
+			</div>
+
+            <div class="login">
+				<form method="post">
+					{% csrf_token %}
+					<label for="chk" aria-hidden="true">ورود</label>
+					<input type="text" name="username" placeholder="نام کاربری" required="">
+					<input type="password" name="pswd" placeholder="رمز عبور" required="">
+					<button type="submit" name="login_btn">ورود</button>
+                    <a href="#" class="pass">رمز عبور خود را فراموش کرده اید!</a>
+				</form>
+			</div>
+		</div>
+
+
+		<!-- footer-box -->
+		{% include 'fanavar/shared/footer_base.html' %}
+
+	</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}
+</html>

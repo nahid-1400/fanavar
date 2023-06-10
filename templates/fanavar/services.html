@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/servises.css' %}" rel="stylesheet">
+  <title>خدمات</title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+    <!-- servises-header -->
+    <p class="s-header">خدمات ما</p>
+
+    <!-- servises-boxs - Line 1 -->
+    <article class="s-line1" dir="rtl">
+
+      <!-- box-1 -->
+      {% for service in object_list %}
+      <a href="{% url 'service-fanavar' service.id service.title %}">
+        <section class="s-box">
+          <img src="{{ service.image.url }}" alt="{{ service.title }}" class="img-box">
+          <h3>{{ service.title }}</h3>
+          <p class="comment">{{ service.short_descriptions|striptags|truncatewords:40|safe }}</p>
+        </section>
+      </a>
+
+      {% endfor %}
+
+      
+
+    </article>
+
+    <!-- servises-boxs - Line 2-->
+   
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{% load sweetify %}
+{% sweetify %}
+</html>

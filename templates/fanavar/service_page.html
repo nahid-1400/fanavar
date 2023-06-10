@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="yalda fazel">
+    <link href="{% static 'fanavar/css/servise-page.css' %}" rel="stylesheet">
+    <title>{{ object.title }}</title>
+</head>
+
+<body>
+
+    <div id="site-body">
+        <!-- header -->
+         {% include 'fanavar/shared/header_base.html' %}
+
+        <p class="a-header">{{ object.title }}</p>
+
+        <!-- left box -->
+        <article class="left-box">
+            <img src="{{ object.image.url }}" alt="{{ object.title }}" width="500px" style="margin: 15px 0px 0px 80px;">
+        </article>
+
+        <!-- right box -->
+        <article class="right-box" dir="rtl">
+            <img src="{% static 'fanavar/image/s1.png' %}" alt="" width="30px" style="float: right; margin: 30px 60px 0px 5px;">
+            <p style="font-size: 25px; text-align: right; margin-top: 30px;">{{ object.title }} </p>
+            <p
+                style="font-size: 18px; margin: 20px 60px 0px 60px; text-align: justify; line-height: 35px; color: rgb(106, 106, 106);">
+            {{ object.descriptions|striptags|safe }}   
+            </p>
+        </article>
+
+
+        <!-- order box -->
+        <article class="order-box" dir="rtl">
+
+            <!-- adviser and  order-->
+            <a href="{% url 'demand-create' %}"><button class="a-and-o"><b>مشاوره و سفارش
+                        پروژه</b></button></a>
+
+            <br>
+            <img src="{% static 'fanavar/image/s1.png' %}" alt="" width="30px" style="float: right; margin: 140px 60px 0px 5px;">
+            <p style="font-size: 20px; margin: 145px 8px 0px 0px;">خدمات دیگر ما</p>
+
+        </article>
+
+        <!-- slider -->
+        <article class="slider-box">
+
+            <div class="wrapper">
+
+                <!-- left-button -->
+                <i id="left" class="fa-solid fa-angle-left">
+                    <img src="{% static 'fanavar/image/left.png' %}" width="50px">
+                </i>
+
+                <!-- carousel slid -->
+                <ul class="carousel">
+
+                    {% for service in services %}
+                    <a href="{% url 'service-fanavar' service.id service.title %}">
+                    <li class="card">
+                        <div class="img"><img src="{{ service.image.url }}" alt="{{ service.title }}" style="padding: 0;"></div>
+                        <h2>{{ service.title }}</h2>
+                        <p dir="rtl">{{ service.short_descriptions|striptags|truncatewords:30|safe  }}</p>
+                    </li>
+                </a>
+                    {% endfor %}
+                    
+                </ul>
+
+                <!-- riglt button -->
+                <i id="right" class="fa-solid fa-angle-right">
+                    <img src="{% static 'fanavar/image/right.png' %}" width="50px">
+                </i>
+            </div>
+
+        </article>
+    
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="{% static 'fanavar/js/servise-slider.js' %}" defer></script>
+
+    {% load sweetify %}
+    {% sweetify %}
+    </html>

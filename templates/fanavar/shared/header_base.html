@@ -1,0 +1,48 @@
+  {% load static %}
+  <header>
+
+      <!-- logo photo -->
+      <img src="{% static 'fanavar/image/logo/logo-fanavar.png' %}" alt="Logo" id="logo">
+      <!-- navbar -->
+      <nav>
+        <ul>
+          <li>
+            <a href="{% url 'home' %}" style="margin-right: 30px;">صفحه اصلی</a>
+          </li>
+          <li>
+            <a href="{% url 'demand-create' %}" class="nav-s">مشاوره و سفارش پروژه</a>
+          </li>
+          <li>
+            <a href="{% url 'work-sampels' %}" class="nav-s">نمونه کارها</a>
+          </li>
+          <li>
+            <a href="{% url 'services' %}" class="nav-s">خدمات</a>
+          </li>
+          <li>
+            <a href="{% url 'articels' %}" class="nav-s">مقالات</a>
+          </li>
+          <li>
+            <a href="https://blog.fanavaranfartak.com/" target="_blank">آموزش ها</a>
+          </li>
+          <li>
+            <a href="{% url 'about-us' %}">درباره ما</a>
+          </li>
+          <li>
+            <a href="{% url 'contact-us' %}">تماس با ما</a>
+          </li>
+          <li>
+            <a href="{% url 'guide' %}" class="nav-s">راهنما</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- user image -->
+      <img src="{% static 'fanavar/image/user.png' %}" id="user-img" alt="User">
+
+      <!-- login and membership button -->
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'profile:profile-home' %}" class="log-mem"> پروفایل</a>
+        {% else %}
+      <a href="{% url 'login-signup' %}" class="log-mem">ورود | ثبت نام</a>
+      {% endif %}
+    </header>

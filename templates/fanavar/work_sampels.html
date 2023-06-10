@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="yalda fazel">
+	<link href="{% static 'fanavar/css/view-Work-samples.css' %}" rel="stylesheet">
+	<title>نمونه کارها</title>
+</head>
+
+<body>
+
+	<div id="site-body">
+		<!-- header -->
+        {% include 'fanavar/shared/header_base.html' %}
+
+
+
+		<!-- view work samples-header -->
+		<p class="v-w-s-header">نمونه کارهای ما</p>
+
+		{% for servise in services %}
+		<h1 style="font-size: 20px; margin: 60px 80px 0px 0px; float: right; ">
+			{{ servise.title }}
+			<img src="{% static 'fanavar/image/s1.png' %}" class="Square-img">
+		</h1>
+
+		<!-- web design-boxs - Line 1 -->
+		<article class="w-d-box1">
+			<!-- box-1 -->
+			{% for work_sampel in object_list %}
+			{% if work_sampel.services ==  servise %}
+			<a href="{{ work_sampel.link }}">
+				<section class="w-d">
+					<img src="{{ work_sampel.image.url }}" alt="" class="img-box">
+					<div class="s-user">
+						<img src="{{ work_sampel.colleague.profile_image.url}}" alt="{{ work_sampel.title }}" class="user-i">
+					</div>
+					<p>{{ work_sampel.colleague.full_name }}</p>
+					<h3>{{ work_sampel.title }}</h3>
+					<p class="comment">{{ work_sampel.descriptions }}</p>
+				</section>
+			</a>
+			{% else %}
+			<p style="text-align: right;margin: 100px;">نمونه کا ری وجود ندارد</p>
+			{% endif %}
+			{% endfor %}
+		</article>
+		{% endfor %}
+
+        {% include 'fanavar/shared/footer_base.html' %}
+
+    </div>
+    
+    </body>
+
+		<!-- footer-box -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        {% load sweetify %}
+        {% sweetify %}
+        </html>

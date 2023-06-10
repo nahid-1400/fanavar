@@ -1,0 +1,285 @@
+/* Webfont: Yekan */
+@font-face {
+	font-family: 'Yekan';
+	src:	url('./Yekan-font-master/Yekan.eot'); /* IE9 Compat Modes */
+	src:	url('./Yekan-font-master/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+			url('./Yekan-font-master/Yekan.woff2') format('woff2'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.woff') format('woff'), /* Modern Browsers */
+			url('./Yekan-font-master/Yekan.otf') format('opentype'), /* Open Type Font */	
+			url('./Yekan-font-master/Yekan.ttf') format('truetype'); /* Safari, Android, iOS */
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: optimizeLegibility;
+	font-display: auto;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+#site-body {
+    width: 1500px;
+    height: 700px;
+    margin: auto;
+    font-family: 'Yekan';
+}
+
+/* header */
+header {
+    width: 1500px;
+    height: 60px;
+    background-image: linear-gradient(rgb(243, 243, 243), rgb(255, 255, 255));
+}
+
+/* navbar */
+ul li {
+    float: right;
+    list-style-type: none;
+    margin: 30px 20px 0px 15px;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+}
+
+ul li a:hover {
+    color: #b3a5ff;
+}
+
+.nav-s {
+    color: #b3a5ff;
+}
+
+.nav-s:hover {
+    color: #8772ff;
+}
+
+/* logo */
+#logo {
+    width: 100px;
+    float: right;
+    margin: 15px 70px 0px 120px;
+}
+
+.color-n {
+    color: #b3a5ff;
+}
+
+.color-n:hover {
+    color: #6559a7;
+}
+
+/* user image */
+#user-img {
+    width: 25px;
+    margin: 19px 5px 0px 60px;
+}
+
+/* login and membership button */
+.log-mem {
+    text-decoration: none;
+    color: #b3a5ff;
+}
+
+.log-mem:hover {
+    color: #8772ff;
+}
+
+
+
+/* log and mem box */
+.main {
+    width: 350px;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #5b5b5b;
+    background: linear-gradient(to bottom, #dad7ff, #8989e4);
+    margin: 80px 0px 0px 570px;
+}
+
+#chk {
+    display: none;
+}
+
+/* sign up box */
+.signup {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+label {
+    color: #fff;
+    font-size: 2.3em;
+    justify-content: center;
+    display: flex;
+    margin: 60px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .5s ease-in-out;
+}
+
+input {
+    width: 60%;
+    height: 20px;
+    background: #e0dede;
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    text-align: right;
+}
+
+button {
+    width: 60%;
+    height: 40px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #6d45b9;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #6133b5;
+}
+
+/* login box */
+.login {
+    height: 460px;
+    background: #eee;
+    border-radius: 60% / 10%;
+    transform: translateY(-180px);
+    transition: .8s ease-in-out;
+}
+
+.login label {
+    color: #573b8a;
+    transform: scale(.6);
+}
+
+/* inside the login box */
+#chk:checked~.login {
+    transform: translateY(-500px);
+}
+
+/* change text size - login */
+#chk:checked~.login label {
+    transform: scale(1);
+}
+
+/* change text size - sign up */
+#chk:checked~.signup label {
+    transform: scale(.6);
+}
+
+/* forget password */
+.login .pass {
+    text-decoration: none;
+    font-size: 13px;
+    color: #573b8a;
+    margin-right: 95px;
+}
+
+/* footer-box */
+#footer-box {
+    width: 1500px;
+    height: 450px;
+    float: right;
+}
+
+/* right box and middel box and left box */
+#footer-box .f-box {
+    width: 500px;
+    height: 400px;
+    float: left;
+}
+
+/* about us text - right box item */
+.f-box h3 {
+    margin: 80px 0px 0px 240px;
+    color: #907cff;
+}
+
+/* footer-text */
+.f-t-1 {
+    font-size: 18px;
+    margin: 0px 0px 0px 120px;
+    color: #b3a5ff;
+    display: inline;
+}
+
+.f-t-2 {
+    font-size: 15px;
+    padding: 20px 68px 0px 0px;
+    color: rgb(115, 115, 115);
+    direction: rtl;
+    text-align: justify;
+    line-height: 25px;
+}
+
+/* logo image-footer */
+.f-logo {
+    width: 110px;
+    margin: 80px 0px 0px 330px;
+    position: absolute;
+}
+
+
+/* site-part-middel box*/
+.part-s {
+    margin: 100px 0px 5px 215px;
+    font-size: 18px;
+    color: #b3a5ff;
+}
+
+.f-box a {
+    text-decoration: none;
+    display: block;
+    color: #525252;
+    text-align: right;
+    margin: 0px 200px 0px 0px;
+    font-size: 15px;
+    line-height: 27px;
+}
+
+/* circle - middel box*/
+.circle {
+    margin: 9px 180px 0px 0px;
+    width: 10px;
+    float: right;
+}
+
+/* links-left box */
+.links {
+    font-size: 18px;
+    color: #b3a5ff;
+    display: inline;
+    float: right;
+    margin: 110px 70px 0px 0px;
+
+}
+
+/* telegram-instagram-whatsapp-icon - left box */
+.t-i-w-icon img {
+    width: 30px;
+    float: right;
+    margin: 108px 15px 0px 0px;
+}

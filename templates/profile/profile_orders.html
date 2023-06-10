@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="yalda fazel">
+  <link href="{% static 'fanavar/css/profile-orders.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>سفارش ها </title>
+</head>
+
+<body>
+
+  <div id="site-body">
+    <!-- header -->
+    {% include 'fanavar/shared/header_base.html' %}
+
+
+    <!-- right box -->
+    {% include 'profile/shared/profile_sidbar.html' %}
+
+
+ <!-- main box -->
+ <section id="main-box" dir="rtl">
+
+    <h3>سفارش های شما</h3>
+    {% if orders.count > 0 %}
+    <table class="o-tabel">
+        <thead>
+            <td>کد سفارش</td>
+            <td>نوع خدمت</td>
+            <td>عنوان سفارش</td>
+            <td>هزینه</td>
+            <td>وضعیت</td>
+            <td>زمان تحویل</td>
+            <td>مشاهده جزئیات</td>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.order_code }}</td>
+                <td>{{ order.servise.title }} </td>
+                <td>{{ order.title }}</td>
+                <td>{{ order.price }}</td>
+                <td>
+                    {% if order.status == 's' %}
+                    ثبت شده
+                    {% elif order.status == 'a' %}
+                    در حال شروع آماده سازی
+                    {% elif order.status == 'p' %}
+                    شروع پروژّ'
+                    {% elif order.status == 'k' %}
+                    در حال کار روی پروژّ 
+                    {% elif order.status == 'e' %}
+                    اتمام پروژّ
+                    {% endif %}  
+                </td>
+                <td>{{ order.possible_delivery_time }}</td>
+                
+                <td class="plus">
+                    <a href="{% url 'profile:profile-user-order-detail' order.id %}">
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        
+         
+        </tbody>
+    </table>
+    {% else %}
+    <div>
+        <p style="color: rgb(132, 115, 242); padding: 13px;background-color: #E6E1FF;margin: 20px;border-radius: 5px;">سفارشی جهت نمایش وجود ندارد.</p>
+    </div>
+
+    {% endif %}
+
+</section>
+
+
+
+
+
+    <!-- footer-box -->
+    {% include 'fanavar/shared/footer_base.html' %}
+
+</div>
+
+</body>
+
+    <!-- footer-box -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    {% load sweetify %}
+    {% sweetify %}
+    </html>
