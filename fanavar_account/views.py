@@ -5,11 +5,14 @@ import sweetify
 from django.contrib.auth import logout
 from .forms import ProfileUpdateInformation
 from django.urls import reverse, reverse_lazy
-
+import random
+from django.contrib.auth.decorators import login_required
+from .mixins import LoginMixinAccount
+@login_required(login_url='login-signup')
 def profile_home(request):
     return render(request,'profile/profile_home.html')
 
-class ProfileInformation(DetailView):
+class ProfileInformation(LoginMixinAccount,  DetailView):
     template_name = 'profile/profile_information_user.html'  
     model = MyUser
 
@@ -19,7 +22,7 @@ class ProfileInformation(DetailView):
         user = get_object_or_404(MyUser.objects.all(), id=id, username=username)
         return user
 
-class ProfileOrder(ListView):
+class ProfileOrder(LoginMixinAccount, ListView):
     template_name = 'profile/profile_orders.html'  
     model = OrderDetail
 
@@ -31,7 +34,7 @@ class ProfileOrder(ListView):
         return context
 
 
-class ProfileOrderDetail(DetailView):
+class ProfileOrderDetail(LoginMixinAccount, DetailView):
     template_name = 'profile/profile_order_detail.html'  
     model = OrderDetail
 
@@ -41,7 +44,7 @@ class ProfileOrderDetail(DetailView):
         return order
 
 
-class ProfileTicket(ListView):
+class ProfileTicket(LoginMixinAccount, ListView):
     template_name = 'profile/profile_tickets.html'  
     model = OrderDetail
 
@@ -52,6 +55,7 @@ class ProfileTicket(ListView):
         context['tickets'] = tickets
         return context
 
+@login_required(login_url='login-signup')
 def profile_answer_ticket(request, id):
     user_id = request.user.id
     ticket = get_object_or_404(Ticket, owner=user_id, id=id)
@@ -68,13 +72,14 @@ def profile_answer_ticket(request, id):
     context = {'ticket':ticket, 'answers':answers}
     return render(request,'profile/profile_ticket_chat.html', context)
 
+@login_required(login_url='login-signup')
 def profile_logout_user(request):
     if request.user.is_authenticated:
         logout(request)
         return redirect('login-signup')
 
 
-class ProfileUpdateInformation(UpdateView):
+class ProfileUpdateInformation(LoginMixinAccount,UpdateView):
     model = MyUser
     form_class = ProfileUpdateInformation
     template_name = 'profile/profile_edit_inaformation.html'
@@ -85,3 +90,19 @@ class ProfileUpdateInformation(UpdateView):
         user_obj = self.get_object()
         context['form'] = self.form_class(instance=user_obj)
         return context
+
+@login_required(login_url='login-signup')
+def add_new_ticket(request):
+    if request.method == "POST":
+        owner = request.user
+        title = request.POST.get('title')
+        descriptions = request.POST.get('descriptions')
+        subject = request.POST.get('subject')
+        print(subject)
+        status = 'o'
+        ticket = Ticket.objects.create(owner=owner, title=title, descriptions=descriptions, subject=subject, status=status)
+        sweetify.success(request, 'تیکت شما با موفقیت ایجاد شد و به زودی به آن پاسخ خواهیم داد', button='باشه', timer=3000)
+        return redirect('profile:profile-user-tickets')
+    return render(request,'profile/profile_add_ticket.html')
+
+

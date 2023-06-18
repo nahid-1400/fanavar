@@ -31,7 +31,7 @@
 		<!-- web design-boxs - Line 1 -->
 		<article class="w-d-box1">
 			<!-- box-1 -->
-			{% for work_sampel in object_list %}
+			{% for work_sampel in work_sampels %}
 			{% if work_sampel.services ==  servise %}
 			<a href="{{ work_sampel.link }}">
 				<section class="w-d">
@@ -44,8 +44,6 @@
 					<p class="comment">{{ work_sampel.descriptions }}</p>
 				</section>
 			</a>
-			{% else %}
-			<p style="text-align: right;margin: 100px;">نمونه کا ری وجود ندارد</p>
 			{% endif %}
 			{% endfor %}
 		</article>

@@ -28,7 +28,7 @@ def login_signup(request):
                 if user is not None: 
                     login(request, user)
                     sweetify.success(request, 'شما با موفقیت وارد حساب کاربری خود شدید.', button='باشه', timer=3000)
-                    return redirect('home')
+                    return redirect('profile:profile-home')
                 else:
                     sweetify.info(request, 'نام کاربری  یا رمز عبور به درستی وارد نشده است', button='باشه', timer=3000)
             except ValueError:
@@ -42,7 +42,7 @@ def login_signup(request):
                 user = MyUser.objects.create_user(username=user_name, phone_number=phone_number, password=password)
                 sweetify.success(request, 'حساب شما با موفقیت ایجاد شد ', button='باشه', timer=3000)
                 login(request, user)
-                return redirect('home')
+                return redirect('profile:profile-home')
             except ValueError:
                 sweetify.info(request,'لطفا موارد خواسته شده را به درستی وارد کنید', button='باشه', timer=3000)
     context = {'signup_form':signup_form}
@@ -81,7 +81,8 @@ class WorkSampelView(ListView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        context['services'] = Services.objects.filter(show_in_work_sampel_page=True)      
+        context['services'] = Services.objects.filter(show_in_work_sampel_page=True)    
+        context['work_sampels']  = WorkSampel.objects.all()
         return context
 
 

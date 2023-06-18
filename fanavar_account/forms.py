@@ -1,9 +1,9 @@
 from tinymce.widgets import TinyMCE
 from django import forms
-from dashboard.models import  MyUser
+from dashboard.models import  MyUser, Ticket
 from django_summernote.widgets import SummernoteWidget
 from django.core import validators
-
+import random
 
 
 
@@ -28,4 +28,5 @@ class ProfileUpdateInformation(forms.ModelForm):
     class Meta:
         model = MyUser
         fields = ['first_name','last_name', 'phone_number', 'profile_image','email']
+
 

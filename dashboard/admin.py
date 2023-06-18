@@ -1,5 +1,5 @@
 from django.contrib import admin
-from dashboard.models import MyUser, Services, CateGoryArticle, Article, OrderDetail, Demand,Question, WorkSampel, Ticket,TicketAnswer
+from dashboard.models import MyUser, Services, CateGoryArticle, Article, OrderDetail, Demand,Question, WorkSampel, Ticket,TicketAnswer, WorkSampel
 
 admin.site.register(MyUser)
 admin.site.register(Services)
@@ -10,3 +10,4 @@ admin.site.register(Demand)
 admin.site.register(Question)
 admin.site.register(Ticket)
 admin.site.register(TicketAnswer)
+admin.site.register(WorkSampel)

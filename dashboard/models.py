@@ -169,7 +169,6 @@ STATUS_CHOICES = (
 
 class Ticket(models.Model):
     owner = models.ForeignKey(MyUser, default=None, on_delete=models.CASCADE, verbose_name='کاربر ')
-    ticket_code = models.CharField(max_length=7, default= None, verbose_name='کد تیکت')
     title = models.CharField(max_length=200, default=None, verbose_name='عنوان')
     descriptions = models.TextField(verbose_name='توضیحات')
     subject = models.CharField(max_length=3, choices=TICKET_CHOICES, verbose_name='موضوع تیکت')

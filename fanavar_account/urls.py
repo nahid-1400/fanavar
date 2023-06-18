@@ -1,5 +1,5 @@
 from django.urls import path
-from fanavar_account.views import profile_home, ProfileInformation, ProfileOrder,  ProfileOrderDetail, ProfileTicket, profile_answer_ticket, profile_logout_user, ProfileUpdateInformation
+from fanavar_account.views import profile_home, ProfileInformation, ProfileOrder,  ProfileOrderDetail, ProfileTicket, profile_answer_ticket, profile_logout_user, ProfileUpdateInformation, add_new_ticket
 app_name = 'profile'
 
 urlpatterns = [
@@ -11,6 +11,8 @@ urlpatterns = [
     path('tickets/chat-ticket/<id>', profile_answer_ticket, name='profile-chat-ticket'),
     path('logout', profile_logout_user, name='profile-logout-user'),
     path('edit_information/<int:pk>', ProfileUpdateInformation.as_view(), name='profile-edit-information'),
+    path('new_ticket', add_new_ticket, name='new-ticket'),
+
 
 
 ]

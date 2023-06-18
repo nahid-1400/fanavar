@@ -28,7 +28,7 @@
 
     <h3>همه تیکت ها</h3>
     
-    <a href="./profile-add-ticket.html" class="new-ticket" title="افزودن تیکت">
+    <a href="{% url 'profile:new-ticket' %}" class="new-ticket" title="افزودن تیکت">
         <i class="fa fa-plus-square" aria-hidden="true"></i>
     </a>
     {% if tickets.count > 0 %}

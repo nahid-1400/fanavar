@@ -10,7 +10,7 @@ from django.contrib import messages
 from dashboard.forms import ServicesForm, ArticleForm, OrderForm, DemandForm, QuestionForm, CategoryArticelForm, UserUpdateDashboardForm, UserCreateDashboardForm
 import sweetify
 from dashboard.mixins import AccessUsersDashboardMixin
-from utils.decoratorsls import access_user_dashboard
+from utils.decorators import access_user_dashboard
 
 def login_dashboard(request):
     error = False
