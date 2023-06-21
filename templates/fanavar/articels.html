@@ -19,11 +19,11 @@
 
     <!-- articles-header -->
     <p class="a-header">مقالات</p>
-
+    {% for g_articel in object_list %}
     <!-- articles-boxs - Line 1 -->
     <article class="a-line1" dir="rtl">
 
-      {% for articel in object_list %}
+      {% for articel in g_articel %}
       <a href="{% url 'articel-fanavar' articel.id articel.title %}">
         <section class="a-box">
           <img src="{{ articel.image.url }}" alt="{{ articel.title }}" class="img-box">
@@ -32,10 +32,8 @@
         </section>
       </a>
       {% endfor %}
-
-
-    
     </article>
+    {% endfor %}
 
  
     <!-- pageenation -->

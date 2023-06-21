@@ -45,7 +45,7 @@
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <p class="mb-0">مجموع درآمد</p>
-                                        <h5 class="mb-0">52,945 تومان</h5>
+                                        <h5 class="mb-0">{{ income }} تومان</h5>
                                     </div>
                                     <div class="ms-auto"> <i class='bx bx-wallet font-30'></i>
                                     </div>
@@ -74,8 +74,8 @@
                             <div class="card-body">
                                 <div class="d-flex align-items-center">
                                     <div>
-                                        <p class="mb-0">دیدگاه</p>
-                                        <h5 class="mb-0">{{ comments.count }}</h5>
+                                        <p class="mb-0">تیک ها</p>
+                                        <h5 class="mb-0">{{ ticket.count }}</h5>
                                     </div>
                                     <div class="ms-auto"> <i class='bx bx-chat font-30'></i>
                                     </div>
@@ -276,7 +276,6 @@
                                     </div>
                                     <div class="">
                                         <h6 class="mb-0 font-14">{{ servies.title }}</h6>
-                                        <p class="mb-0">148 سفارش</p>
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -334,16 +333,31 @@
                                                 <td>22 مرداد 1400</td>
                                                 {% if order.status == 's' %} 
                                                 <td class=""><span class="badge bg-light-success text-success w-100">ثبت شده</span>
+                                                    {% elif order.status == 'a' %}
+                                                    <td class=""><span class="badge w-100" style="background-color: crimson;"> در حال شروع آماده سازی</span>
+                                                {% elif order.status == 'p' %}
+                                                <td class=""><span class="badge w-100" style="background-color: aquamarine;">شروع پروژه  </span>
+                                                {% elif order.status == 'k' %}
+                                                <td class=""><span class="badge  w-100" style="background-color: rgb(196, 209, 98);"> در حال کار روی پروژ </span>
+                                                {% elif order.status == 'e' %}
+                                                <td class=""><span class="badge  w-100" style="background-color: rgb(77, 20, 220);"> اتمام پروژه</span>
                                                     {% endif %}
                                                 </td>
                                                 <td>{{ order.price }} تومان</td>
                                                 <td>
-                                                    <div class="d-flex order-actions"> <a href="javascript:;"
-                                                            class="text-danger bg-light-danger border-0"><i
-                                                                class='bx bxs-trash'></i></a>
-                                                        <a href="javascript:;"
-                                                            class="ms-4 text-primary bg-light-primary border-0"><i
-                                                                class='bx bxs-edit'></i></a>
+                                                    <div class="d-flex order-actions">
+                                                         <form action="{% url 'dashboard_user:order-delete' order.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-sm btn-danger">
+                                                            <i class="bx bxs-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                    <form method="post" action="{% url 'dashboard_user:order-update' order.pk %}">
+                                                        {% csrf_token %}
+                                                    <button type="submit"
+                                                        class="ms-4 text-primary bg-light-primary border-0"><i
+                                                            class='bx bxs-edit'></i></button>
+                                                            </form>
                                                     </div>
                                                 </td>
                                             </tr>

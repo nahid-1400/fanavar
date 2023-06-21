@@ -3,16 +3,19 @@ from django.views.generic import FormView, ListView, DetailView, CreateView, Upd
 from dashboard.models import MyUser, OrderDetail, Ticket, TicketAnswer
 import sweetify
 from django.contrib.auth import logout
-from .forms import ProfileUpdateInformation
+from .forms import ProfileUpdateInformation,ChangePassword
 from django.urls import reverse, reverse_lazy
 import random
 from django.contrib.auth.decorators import login_required
-from .mixins import LoginMixinAccount
+from .mixins import LoginMixinAccount, CheckComplateInfoUser
+from utils.decorators import check_complate_info_user
+
 @login_required(login_url='login-signup')
+@check_complate_info_user
 def profile_home(request):
     return render(request,'profile/profile_home.html')
 
-class ProfileInformation(LoginMixinAccount,  DetailView):
+class ProfileInformation(LoginMixinAccount,CheckComplateInfoUser,  DetailView):
     template_name = 'profile/profile_information_user.html'  
     model = MyUser
 
@@ -22,7 +25,7 @@ class ProfileInformation(LoginMixinAccount,  DetailView):
         user = get_object_or_404(MyUser.objects.all(), id=id, username=username)
         return user
 
-class ProfileOrder(LoginMixinAccount, ListView):
+class ProfileOrder(LoginMixinAccount,CheckComplateInfoUser, ListView):
     template_name = 'profile/profile_orders.html'  
     model = OrderDetail
 
@@ -34,7 +37,7 @@ class ProfileOrder(LoginMixinAccount, ListView):
         return context
 
 
-class ProfileOrderDetail(LoginMixinAccount, DetailView):
+class ProfileOrderDetail(LoginMixinAccount,CheckComplateInfoUser, DetailView):
     template_name = 'profile/profile_order_detail.html'  
     model = OrderDetail
 
@@ -44,7 +47,7 @@ class ProfileOrderDetail(LoginMixinAccount, DetailView):
         return order
 
 
-class ProfileTicket(LoginMixinAccount, ListView):
+class ProfileTicket(LoginMixinAccount,CheckComplateInfoUser, ListView):
     template_name = 'profile/profile_tickets.html'  
     model = OrderDetail
 
@@ -56,19 +59,21 @@ class ProfileTicket(LoginMixinAccount, ListView):
         return context
 
 @login_required(login_url='login-signup')
+@check_complate_info_user
 def profile_answer_ticket(request, id):
     user_id = request.user.id
     ticket = get_object_or_404(Ticket, owner=user_id, id=id)
     answers = TicketAnswer.objects.filter(ticket=ticket)
-    if request.method == 'POST':
-        try:
-            text = request.POST.get('send-answer')
-            if text != '':
-                TicketAnswer.objects.create(ticket=ticket, owner=request.user, answer=text)
-            else:
-                sweetify.info(request, 'لطفا پیغام خود را وارد نمایید', button='باشه', timer=3000)
-        except:
-            sweetify.info(request, 'لطفا پیغام خود را به درستی وارد نمایید', button='باشه', timer=3000)
+    if ticket.status == 'o':
+        if request.method == 'POST':
+            try:
+                text = request.POST.get('send-answer')
+                if text != '':
+                    TicketAnswer.objects.create(ticket=ticket, owner=request.user, answer=text)
+                else:
+                    sweetify.info(request, 'لطفا پیغام خود را وارد نمایید', button='باشه', timer=3000)
+            except:
+                sweetify.info(request, 'لطفا پیغام خود را به درستی وارد نمایید', button='باشه', timer=3000)
     context = {'ticket':ticket, 'answers':answers}
     return render(request,'profile/profile_ticket_chat.html', context)
 
@@ -78,20 +83,28 @@ def profile_logout_user(request):
         logout(request)
         return redirect('login-signup')
 
-
-class ProfileUpdateInformation(LoginMixinAccount,UpdateView):
-    model = MyUser
-    form_class = ProfileUpdateInformation
-    template_name = 'profile/profile_edit_inaformation.html'
-    success_url  = reverse_lazy('profile:profile-user-informattion')
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user_obj = self.get_object()
-        context['form'] = self.form_class(instance=user_obj)
-        return context
+@login_required(login_url='login-signup')
+def profile_edit_information(request):
+    user = request.user
+    form = ProfileUpdateInformation(request.POST or None,  request=request, initial={'first_name': user.first_name, 'last_name': user.last_name, 'phone_number': user.phone_number, 'email': user.email, 'profile_image': user.profile_image})
+    if form.is_valid():
+        first_name = form.cleaned_data.get('first_name')
+        last_name = form.cleaned_data.get('last_name')
+        phone_number = form.cleaned_data.get('phone_number')
+        email = form.cleaned_data.get('email')
+        profile_image = form.cleaned_data.get('profile_image')
+        user.first_name = first_name
+        user.last_name = last_name
+        user.phone_number = phone_number
+        user.email = email
+        user.profile_image = profile_image
+        user.save()
+        sweetify.success(request, 'عملیات موفق', text='اطلاعات شما با موفقیت ویرایش و ثبت گردید', persistent='بسیار خوب')
+        return redirect('profile:profile-user-informattion')
+    return render(request, 'profile/profile_edit_inaformation.html', {'form':form})
 
 @login_required(login_url='login-signup')
+@check_complate_info_user
 def add_new_ticket(request):
     if request.method == "POST":
         owner = request.user
@@ -106,3 +119,21 @@ def add_new_ticket(request):
     return render(request,'profile/profile_add_ticket.html')
 
 
+@login_required(login_url='/login')
+@check_complate_info_user
+def change_password(request):
+    user_id = request.user.id
+    user = get_object_or_404(MyUser, id=user_id)
+    change_password_form = ChangePassword(request.POST or None, initial={'password_back': user.password})
+    if change_password_form.is_valid():
+        password_back = change_password_form.cleaned_data.get('password_back')
+        new_password = change_password_form.cleaned_data.get('new_password')
+        if user.check_password(password_back):
+            user.set_password(new_password)
+            user.save()
+            return redirect('profile:profile-user-informattion')
+            sweetify.success(request, 'عملیات موفق', text='رمز عبور شما به موفقیت تغییر کرد', persistent='بسیار خوب')
+        else:
+            change_password_form.add_error('password_back', 'رمز عبور صحیح نیست')
+    context = {'change_password': change_password_form, 'title': 'ویرایش رمز عبور'}
+    return render(request, 'profile/new_password.html', context)

@@ -58,9 +58,9 @@
   <div class="card">
     <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.title }}">
     <div class="card-body">
-      <a href="{% url 'dashboard_user:servisees-detail' service.title service.id  %}"><h6 class="card-title cursor-pointer">{{ service.title }}</h6></a>
+      <a href="{% url 'dashboard_user:servisees-detail' service.title service.pk  %}"><h6 class="card-title cursor-pointer">{{ service.title }}</h6></a>
       <div class="btn-group" role="group" aria-label="...">
-        <form class="form-info" action="{% url 'dashboard_user:delete-service' service.id %}" method="POST">
+        <form class="form-info" action="{% url 'dashboard_user:delete-service' service.id %}">
           {% csrf_token %}
           <input type="submit" class="btn btn-primary" value="حذف">
         </form>

@@ -94,7 +94,7 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-flex order-actions">
-                                                        <form method="post" action="{% url 'dashboard_user:user-delete' user.pk %}">
+                                                        <form  action="{% url 'dashboard_user:user-delete' user.id %}">
                                                             {% csrf_token %}
                                                             <button type="submit" class="btn btn-sm btn-danger">
                                                                 <i class="bx bxs-trash"></i>
@@ -107,6 +107,11 @@
                                                             class="ms-4 text-primary bg-light-primary border-0"><i
                                                                 class='bx bxs-edit'></i></button>
                                                                 </form>
+                                                                <form action="{% url 'dashboard_user:change-password-dashboard' user.id %}">
+                                                                    {% csrf_token %}
+                                                                <button type="submit"
+                                                                    class="ms-4   border-0" style="background-color: coral;padding: 5px;border-radius: 5px;  color: darkred;">تغییر رمز عبور </button>
+                                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

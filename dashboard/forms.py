@@ -1,7 +1,7 @@
 from tinymce.widgets import TinyMCE
 from django import forms
 from django.utils.html import escape, mark_safe
-from dashboard.models import Services, Article, OrderDetail, Demand, MyUser, Question, CateGoryArticle
+from dashboard.models import Services, Article, OrderDetail, Demand, MyUser, Question, CateGoryArticle, WorkSampel
 from django_summernote.widgets import SummernoteWidget
 
 
@@ -12,7 +12,7 @@ class ServicesForm(forms.ModelForm):
     
     class Meta:
         model = Services
-        fields = ['title', 'image','short_descriptions', 'descriptions', 'active']
+        fields = ['title', 'image','short_descriptions', 'descriptions', 'active', 'show_in_work_sampel_page']
 
 class ArticleForm(forms.ModelForm):
     title = forms.CharField(max_length=200)
@@ -47,7 +47,7 @@ class UserCreateDashboardForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ['username', 'first_name','last_name', 'phone_number','password', 'profile_image','colleague','job','is_author','is_coutomer']
+        fields = ['username', 'first_name','last_name','email', 'phone_number','password', 'profile_image','colleague','job','is_author','is_coutomer']
         help_texts = {
             "username":None,
         }
@@ -68,7 +68,7 @@ class UserUpdateDashboardForm(forms.ModelForm):
 
     class Meta:
         model = MyUser
-        fields = ['username', 'first_name','last_name', 'phone_number', 'profile_image','colleague','job','is_author','is_coutomer']
+        fields = ['username', 'first_name','last_name','email', 'phone_number', 'profile_image','colleague','job','is_author','is_coutomer']
         help_texts = {
             "username":None,
         }
@@ -85,3 +85,8 @@ class CategoryArticelForm(forms.ModelForm):
         fields = ['title', 'parent', 'status', 'position']
 
 
+class WorkSampelDashboardForm(forms.ModelForm):
+    descriptions = forms.CharField(widget=SummernoteWidget())
+    class Meta:
+        model = WorkSampel
+        fields = ['title', 'colleague','descriptions', 'link', 'services','image']

@@ -46,9 +46,19 @@ class SignupForm(forms.Form):
 
 
 class DemandForm(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'background-color': 'white', 'placeholder': 'لطفا عنوان خود را وارد نمایید'}))
-    full_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'لطفا نام کامل خود را وارد نمایید'}))
-    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'لطفا شماره موبایل خود را وارد نمایید'}))
-    descriptions = forms.CharField(widget=forms.Textarea(attrs={'cols': '30' , 'rows':'2', 'id':'Description', 'placeholder': 'لطفا توضیحات خود را وارد نمایید'}), label='توضیحات')
-
-
+    title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'background-color': 'white', 'placeholder': 'لطفا عنوان خود را وارد نمایید'}), validators=[
+        validators.MinLengthValidator(limit_value=2, message='لطفا عنوان معتبر وارد کنید'),
+        validators.MaxLengthValidator(limit_value=50, message='لطفا عنوان معتبر وارد کنید')
+    ])    
+    full_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'لطفا نام کامل خود را وارد نمایید'}), validators=[
+        validators.MinLengthValidator(limit_value=11, message='لطفا نام معتبر وارد کنید'),
+        validators.MaxLengthValidator(limit_value=11, message='لطفا نام معتبر وارد کنید')
+    ])    
+    phone_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'لطفا شماره موبایل خود را وارد نمایید'}), validators=[
+        validators.MaxLengthValidator(limit_value=11, message='لطفا شماره موبایل معتبر وارد کنید'),
+        validators.MinLengthValidator(limit_value=11, message='لطفا شماره موبایل معتبر وارد کنید')
+    ])    
+    descriptions = forms.CharField(widget=forms.Textarea(attrs={'cols': '30' , 'rows':'2', 'id':'Description', 'placeholder': 'لطفا توضیحات خود را وارد نمایید'}), validators=[
+        validators.MinLengthValidator(limit_value=10, message='لطفا توضیحات معتبر وارد کنید'),
+        validators.MaxLengthValidator(limit_value=500, message='لطفا توضیحات معتبر وارد کنید')
+    ], label='توضیحات')

@@ -73,6 +73,7 @@
                                               
                                               
                                                 {% for order in object_list %}
+                                                <tr>
                                                 <td>#{{ order.order_code}}</td>
                                                 <td>
                                                     <div class="d-flex align-items-center">
@@ -97,7 +98,7 @@
                                                 <td>{{ order.price }} تومان</td>
                                                 <td>
                                                     <div class="d-flex order-actions">
-                                                        <form method="post" action="{% url 'dashboard_user:order-delete' order.pk %}">
+                                                        <form action="{% url 'dashboard_user:order-delete' order.id %}">
                                                             {% csrf_token %}
                                                             <button type="submit" class="btn btn-sm btn-danger">
                                                                 <i class="bx bxs-trash"></i>
@@ -112,7 +113,7 @@
                                                                 </form>
                                                     </div>
                                                 </td>
-                                                        
+                                            </tr>    
                                          {% endfor %}
                                        
                                                 {% endif %}

@@ -155,6 +155,7 @@
 					</div>
 					<div class="chat-footer d-flex align-items-center">
 						<div class="flex-grow-1 pe-2">
+							{% if ticket.status == 'o' %}
                             <form method="post">
                                 {% csrf_token %}
 							<div class="input-group">
@@ -167,6 +168,7 @@
                     <button type="submit" style="padding: 7px;border-radius: 5px;"
                         class="ms-4 text-primary bg-light-primary border-0">ارسال پاسخ</button>
                             </form>
+							{% endif %}
 						</div>
 					</div>
 					<!--start chat overlay-->

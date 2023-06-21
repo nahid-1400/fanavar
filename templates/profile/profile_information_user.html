@@ -33,44 +33,34 @@
     <table>
         <tr>
             <td>نام :</td>
-            <td style="width: 200px;" class="t-u-i">{% if object.first_name is not None %}
+            <td style="width: 200px;" class="t-u-i">
             {{ object.first_name }}
-            {% else %}
-            -
-            {% endif %}
+            {{ object.last_name }}
             </td>
             <td>شماره تلفن :</td>
-            <td class="t-u-i">{% if object.phone_number is not None %}
+            <td class="t-u-i">
               {{ object.phone_number }}
-              {% else %}
-              -
-              {% endif %}
             </td>
         </tr>
         
         <tr>
-            <td>نام خانوادگی :</td>
-            <td style="width: 200px;" class="t-u-i">{% if  object.last_name is not None %}
-              {{ object.last_name }}
-              {% else %}
-              -
-              {% endif %}
+            <td>نام کاربری :</td>
+            <td style="width: 200px;" class="t-u-i">
+           {{ object.username }}
             </td>
             <td>ایمیل :</td>
             <td class="t-u-i">
-              {% if object.email is not None %}
               {{ object.email }}
-              {% else %}-{% endif %}
             </td>
         </tr>
         
     </table>
 
     <!-- forget password -->
-    <a href="./profile-new-password.html" id="pass">تغییر رمز عبور</a>
+    <a href="{% url 'profile:change-password' %}" id="pass">تغییر رمز عبور</a>
 
     <!-- edite button -->
-    <a href="{% url 'profile:profile-edit-information' object.id %}" id="edit-button">ویرایش</a>
+    <a href="{% url 'profile:profile-edit-information'%}" id="edit-button">ویرایش</a>
   </div>
 
 </section>

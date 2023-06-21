@@ -1,16 +1,17 @@
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, get_object_or_404, redirect
-from dashboard.models import MyUser, Services,  Article, Demand, OrderDetail, Question, CateGoryArticle, Ticket,TicketAnswer
+from dashboard.models import MyUser, Services,  Article, Demand, OrderDetail, Question, CateGoryArticle, Ticket,TicketAnswer, WorkSampel
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
-from dashboard.forms import ServicesForm, ArticleForm, OrderForm, DemandForm, QuestionForm, CategoryArticelForm, UserUpdateDashboardForm, UserCreateDashboardForm
+from dashboard.forms import ServicesForm, ArticleForm, OrderForm, DemandForm, QuestionForm, CategoryArticelForm, UserUpdateDashboardForm, UserCreateDashboardForm, WorkSampelDashboardForm
 import sweetify
 from dashboard.mixins import AccessUsersDashboardMixin
 from utils.decorators import access_user_dashboard
+from django.db.models import Sum
 
 def login_dashboard(request):
     error = False
@@ -52,6 +53,12 @@ class Dashboard(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
         context['services'] = Services.objects.filter(active=True)
         context['orders'] = OrderDetail.objects.all()
         context['articls'] = Article.objects.all()
+        income = 0
+        order_price =  OrderDetail.objects.aggregate(Sum('price'))
+        for key, value in order_price.items():
+            income = value
+        context['ticket'] = Ticket.objects.all()
+        context['income'] = income
         return context
 
 class ServicesDashboard(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
@@ -77,9 +84,13 @@ class ServicesDetail(AccessUsersDashboardMixin, LoginRequiredMixin, DetailView):
 @access_user_dashboard
 def delete_service(request, id):
     service = get_object_or_404(Services, id=id)
-    service.delete()
-    messages.success(request, f'خدمت مورد نظر با موفقیت حذف شد.')
-    return redirect('dashboard_user:servisees-dashboard')
+    if request.method == 'POST':
+        service.delete()
+        messages.success(request, f'خدمت مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:servisees-dashboard')
+    context = {'object_name': service.title,'link': 'dashboard_user:servisees-dashboard'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
 
 class ServicesCreate(AccessUsersDashboardMixin, LoginRequiredMixin, CreateView):
     model = Services
@@ -111,9 +122,12 @@ class ArticleCreate(AccessUsersDashboardMixin, CreateView):
 @access_user_dashboard
 def delete_article(request, id):
     article = get_object_or_404(Article, id=id)
-    article.delete()
-    messages.success(request, f'مقاله مورد نظر با موفقیت حذف شد.')
-    return redirect('dashboard_user:article-list')
+    if request.method == 'POST':
+        article.delete()
+        messages.success(request, f'مقاله مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:article-list')
+    context = {'object_name': article.title,'link': 'dashboard_user:article-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
 
 class ArticleUpdate(AccessUsersDashboardMixin, LoginRequiredMixin, UpdateView):
     model = Article
@@ -134,10 +148,22 @@ class OrderList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
 def delete_order(request, pk):
-    order = get_object_or_404(OrderDetail, id=pk)
+   
     order.delete()
     messages.success(request, f'سفارش مورد نظر با موفقیت حذف شد.')
     return redirect('dashboard_user:order-list')
+
+
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def delete_order(request, id):
+    order = get_object_or_404(OrderDetail, id=id)
+    if request.method == 'POST':
+        order.delete()
+        messages.success(request, f'سفارش مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:order-list')
+    context = {'object_name': order.title,'link': 'dashboard_user:order-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
 
 
 
@@ -175,11 +201,14 @@ class DemandUpdate(AccessUsersDashboardMixin, LoginRequiredMixin, UpdateView):
 
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
-def demand_delete(request, pk):
-    demand = get_object_or_404(Demand, id=pk)
-    demand.delete()
-    messages.success(request, 'درخواست مورد نظر با موفقیت حذف شد.')
-    return redirect('dashboard_user:demand-list')
+def demand_delete(request, id):
+    demand = get_object_or_404(Demand, id=id)
+    if request.method == 'POST':
+        demand.delete()
+        messages.success(request, f'درخواست مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:demand-list')
+    context = {'object_name': demand.title,'link': 'dashboard_user:demand-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
 
 
 @login_required(login_url='dashboard_user:dashboard-sigin')
@@ -227,6 +256,18 @@ def user_delete(request, pk):
     messages.success(request, 'کاربر مورد نظر با موفقیت حذف شد.')
     return redirect('dashboard_user:user-list')
 
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def user_delete(request, id):
+    user = get_object_or_404(MyUser, id=id)
+    if request.method == 'POST':
+        user.delete()
+        messages.success(request, f'کاربر مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:user-list')
+    context = {'object_name': user.username,'link': 'dashboard_user:user-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
+
 
 class QuestionList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
     model = Question
@@ -248,9 +289,17 @@ class QuestionUpdate(AccessUsersDashboardMixin, LoginRequiredMixin, UpdateView):
         context['form'] = self.form_class(instance=question_obj)
         return context
 
-class QuestionDelete(AccessUsersDashboardMixin, LoginRequiredMixin, DeleteView):
-    model = CateGoryArticle
-    success_url  = reverse_lazy('dashboard_user:question-list')
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def question_delete(request, id):
+    question = get_object_or_404(Question, id=id)
+    if request.method == 'POST':
+        question.delete()
+        messages.success(request, f'سوال مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:question-list')
+    context = {'object_name': question.title,'link': 'dashboard_user:question-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
 
 class CateGoryArticelList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
     model = CateGoryArticle
@@ -279,6 +328,17 @@ class CateGoryArticelDelete(AccessUsersDashboardMixin, LoginRequiredMixin, Delet
     success_url  = reverse_lazy('dashboard_user:category-list')
 
 
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def category_delete(request, id):
+    category = get_object_or_404(CateGoryArticle, id=id)
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, f'دسته بندی مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:category-list')
+    context = {'object_name': category.title,'link': 'dashboard_user:category-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
 
 class TicketList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
     model = Ticket
@@ -287,28 +347,36 @@ class TicketList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
 def answer_ticket(request, id, user_id):
+    answers = ''
+    tickets = ''
     ticket = get_object_or_404(Ticket, owner=user_id, id=id)
-    tickets = Ticket.objects.filter(owner=user_id, id=id)
-    answers = TicketAnswer.objects.filter(ticket=ticket)
-    if request.method == 'POST':
-        try:
-            text = request.POST.get('send-answer')
-            if text != '':
-                TicketAnswer.objects.create(ticket=ticket, owner=request.user, answer=text)
-            else:
-                sweetify.info(request, 'لطفا پیغام خود را وارد نمایید', button='باشه', timer=3000)
-        except:
-            sweetify.info(request, 'لطفا پیغام خود را به درستی وارد نمایید', button='باشه', timer=3000)
+    if ticket.status == 'o':
+        tickets = Ticket.objects.filter(owner=user_id, id=id)
+        answers = TicketAnswer.objects.filter(ticket=ticket)
+        if request.method == 'POST':
+            try:
+                text = request.POST.get('send-answer')
+                if text != '':
+                    TicketAnswer.objects.create(ticket=ticket, owner=request.user, answer=text)
+                else:
+                    sweetify.info(request, 'لطفا پیغام خود را وارد نمایید', button='باشه', timer=3000)
+            except:
+                sweetify.info(request, 'لطفا پیغام خود را به درستی وارد نمایید', button='باشه', timer=3000)
     context = {'ticket':ticket, 'answers':answers, 'tickets':tickets}
     return render(request,'dashboard/dashboard_answer_ticket.html', context)
 
+
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
-def TicketDelete(request, pk, user_pk):
-    ticket = get_object_or_404(Ticket, id=pk, owner=user_pk)
-    ticket.delete()
-    messages.success(request, 'تیکت مورد نظر با موفقیت حذف شد.')
-    return redirect('dashboard_user:ticket-list')
+def TicketDelete(request, id, user_pk):
+    ticket = get_object_or_404(Ticket, id=id,  owner=user_pk)
+    if request.method == 'POST':
+        ticket.delete()
+        messages.success(request, f'تیکت مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:ticket-list')
+    context = {'object_name': ticket.title,'link': 'dashboard_user:ticket-list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
 
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
@@ -325,3 +393,48 @@ def clos_the_ticket(request, pk, user_pk):
     ticket.save()
     messages.success(request, message_text)
     return redirect('dashboard_user:ticket-list')
+
+class WorkSampelList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
+    model = WorkSampel
+    template_name = 'dashboard/dashboard_work_sampel.html'
+
+class WorkSampelAdd(AccessUsersDashboardMixin, LoginRequiredMixin, CreateView):
+    model = WorkSampel
+    form_class = WorkSampelDashboardForm
+    success_url  = reverse_lazy('dashboard_user:work-sampel_list')
+    template_name = 'dashboard/dashboard_work_sampel_create_update.html'
+
+class WorkSampelUpdate(AccessUsersDashboardMixin, LoginRequiredMixin, UpdateView):
+    model = WorkSampel
+    form_class = WorkSampelDashboardForm
+    template_name = 'dashboard/dashboard_work_sampel_create_update.html'
+    success_url  = reverse_lazy('dashboard_user:work-sampel_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        work_sampel_obj = self.get_object()
+        context['form'] = self.form_class(instance=work_sampel_obj)
+        return context
+
+class WorkSampelDelete(AccessUsersDashboardMixin, LoginRequiredMixin, DeleteView):
+    model = WorkSampel
+    success_url  = reverse_lazy('dashboard_user:work-sampel_list')
+    template_name = 'dashboard/confirm_delete.html'
+
+
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def change_password_dashboard(request, id):
+    user = MyUser.objects.get(id=id)
+    if request.method == 'POST':
+        new_password = request.POST.get('new_password')
+        confirm_new_password = request.POST.get('confirm_new_password')
+        if new_password ==  confirm_new_password:
+            user.set_password(new_password)
+            user.save()
+            sweetify.success(request, 'عملیات موفق', text='رمز عبور  کاربر به موفقیت تغییر کرد', persistent='بسیار خوب')
+            return redirect('dashboard_user:user-list')
+        else:
+            sweetify.info(request, 'عملیات ناموق', text='رمز عبور و تکرار رمز عبور با هم مغایرت ندارند', persistent='بسیار خوب')
+    context = {'user': user}
+    return render(request, 'dashboard/change_password.html', context)

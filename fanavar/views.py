@@ -5,6 +5,12 @@ import sweetify
 from fanavar.forms import SignupForm, DemandForm
 from django.views.generic import FormView, ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse
+import itertools
+
+def my_grouper(n, iterable):
+    args = [iter(iterable)] * n
+    return ([e for e in t if e is not None] for t in itertools.zip_longest(*args))
+
 
 def home(request):
     servises = Services.objects.filter(active=True).order_by('-id')
@@ -73,6 +79,11 @@ class ArticleView(ListView):
     model = Article
     paginate_by = 8
     template_name = 'fanavar/articels.html'
+
+    def get_queryset(self):
+        articel = Article.objects.filter(status='p')
+        g_articel = list(my_grouper(4, articel))
+        return g_articel
 
 class WorkSampelView(ListView):
     model = WorkSampel

@@ -10,6 +10,15 @@
   <link href="{% static 'fanavar/css/profile-edit-user-information.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <title>ویراایش اطلاعات  </title>
+  <style>
+    .p-error{
+      color: red;
+      margin-bottom: -20px;
+      margin-top: -20px;
+      margin-right: 35px;
+
+    }
+  </style>
 </head>
 
 <body>
@@ -33,23 +42,23 @@
             {% csrf_token %}
             {{ form.first_name }}
             {% for error in form.first_name.errors %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="p-error">{{ error }}</p>
             {% endfor %}
             {{ form.last_name }}
             {% for error in form.last_name.errors %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="p-error">{{ error }}</p>
             {% endfor %}
             {{ form.phone_number }}
             {% for error in form.phone_number.errors %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="p-error">{{ error }}</p>
             {% endfor %}
             {{ form.email }}
             {% for error in form.email.errors %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="p-error">{{ error }}</p>
             {% endfor %}
             {{ form.profile_image }}
             {% for error in form.profile_image.errors %}
-            <p style="color: red;">{{ error }}</p>
+            <p class="p-error">{{ error }}</p>
             {% endfor %}
             <button  type="submit">ثبت</button>
         </form>

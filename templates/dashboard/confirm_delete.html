@@ -1,4 +1,3 @@
-{% extends 'dashboard/shared/base.html' %}
 {% load static %}
 {% load render_partial %}
 <!doctype html>
@@ -6,99 +5,49 @@
 
 <head>
     <!-- Required meta tags -->
-      {% block header_style %}  {% include 'dashboard/shared/header_style.html' %}{% endblock %}
-      {% block title %}داشبورد{% endblock %}
-    </head>
+      {% block header_style %} {% include 'dashboard/shared/header_style.html' %}
+      {% endblock %}
+    <title>{% block title %}حذف نمونه کار {% endblock %}</title>
+</head>
 
 <body class="rtl">
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
-       {% block sidbar_dashboard %} {% render_partial "dashboard_user:sidbar-dashboard" %} {% endblock %}
+       {% block sidbar_dashboard %}{% render_partial "dashboard_user:sidbar-dashboard" %} {% endblock %}
         <!--end sidebar wrapper -->
         <!--start header -->
-        {% block header_dashboard %}   {% include 'dashboard/shared/header_dashboard.html' %}{% endblock %}
+        {% block header_dashboard %}{% include 'dashboard/shared/header_dashboard.html' %}{% endblock %}
         <!--end header -->
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
                 {% block body_dashboard %}
-                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
-                   </div>
-            <div class="row">
-                    <div class="col">
-                        <div class="card radius-10 mb-0">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div  style="float: right;">
-                                        <h5 class="mb-1">آخرین سفارشات </h5>
-                                    </div>
-                                    
-                                    <div class="col-lg-3 col-xl-2" style="float: left;margin-right: 70%;">
-                                        <a href="{% url 'dashboard_user:question-add' %}"
-                                            class="btn btn-primary mb-3 mb-lg-0"><i class='bx bxs-plus-square'></i>سوال جدید
-                                            </a>
-                                    </div>
-                                </div>
-                                {% if messages %}
-                                <div style="margin-top: 20px;">
-                                    <br>
-                                <div class="alert alert-success" style=" background-color: #c072c4; color: white;">
-                                    {% for message in messages %}
-                                        {{ message }}
-                                    {% endfor %}
-                                </div>
-                            </div>
+                <div class="row">
+					<div class="col-12">
+						<div class="card">
+							<div class="card-body">
+								<div class="row align-items-center" style="text-align: center;">
+                                    <h5>آیا  {{ object_name }} حذف شود؟؟</h5>
 
-                            {% endif %}
-                                <div class="table-responsive mt-3">
-                                    <table class="table align-middle mb-0">
-                                        {% if object_list.count == 0 %}
-                                        <p> سوال متداولی جهت نمایش وجود ندارد</p>
-                                        {%  else %}
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>عنوان سوال </th>
-                                                <th>پاسخ </th>
-                                                <th> حذف / ویرایش</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for question in object_list %}                              
-                                            <tr>
-                                                <td>{{ question.title }}</td>
-                                                <td>{{ question.answer|truncatewords:15|safe }}</td>   
-                                                <td>
-                                                    <div class="d-flex order-actions">
-                                                        <form action="{% url 'dashboard_user:question-delete' question.id %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                                <i class="bx bxs-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                        
-                                                         <form method="post" action="{% url 'dashboard_user:question-update' question.id %}">
-                                                            {% csrf_token %}
-                                                        <button type="submit"
-                                                            class="ms-4 text-primary bg-light-primary border-0"><i
-                                                                class='bx bxs-edit'></i></button>
-                                                                </form>
-                                                    </div>
-                                                </td>  
-                                            {% endfor %}
-                                            
-                                
-                                            </tr>
-                                            {% endif %}
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end row-->
+									<div class="">
+                                        <form method="post">
+                                            {% csrf_token %}
+										<button  type="submit" style="background-color: red;border-color: red;"
+											class="btn btn-primary mb-3 mb-lg-0">بله
+                                        </button>
+										<a name="cansel" href="{% url link %}" class="btn btn-primary mb-3 mb-lg-0" ></i>خیر
+                                        </a>
+                                        </form>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<!--end row-->
                 {% endblock %}
             </div>
         </div>
@@ -211,20 +160,12 @@
     </div>
     <!--end switcher-->
     <!-- Bootstrap JS -->
-    {% block footer_refrense %}
-    {% include 'dashboard/shared/footer_refrense.html' %}
+    {% block footer_refrense %}{% include 'dashboard/shared/footer_refrense.html' %}{% endblock %}
     <script>
         new PerfectScrollbar('.customers-list');
         new PerfectScrollbar('.store-metrics');
         new PerfectScrollbar('.product-list');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    {% load sweetify %}
-    {% sweetify %}{% endblock %}
-
-
-    
-    
 </body>
 
 </html>s

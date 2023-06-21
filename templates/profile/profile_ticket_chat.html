@@ -93,6 +93,7 @@
           {% endfor %}
         </div>
 
+        {% if ticket.status == 'o' %}
         <form method="post">
         {% csrf_token %}
         <div class="type-area">
@@ -107,6 +108,7 @@
        
         </div>
       </form>
+      {% endif %}
       </div>
 </section>
 </div>

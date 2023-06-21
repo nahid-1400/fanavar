@@ -11,6 +11,16 @@
   <link href="{% static 'fanavar/css/adviser-and-order.css' %}" rel="stylesheet">
 
   <title>مشاوره | ثبت سفارش</title>
+
+  <style>
+    .p-error {
+      color: red;
+      margin-left: 40%;
+      margin-top: -10px;
+      margin-right: -10px;
+      margin-bottom: -10px;
+    }
+  </style>
 </head>
 
 <body>
@@ -34,9 +44,21 @@
         <form method="post">
           {% csrf_token %}
           {{ form.title }}
+          {% for error in form.title.errors %}
+          <p  class="p-error">{{ error }}</p>
+          {% endfor %}
           {{ form.full_name }}
+          {% for error in form.full_name.errors %}
+          <p class="p-error">{{ error }}</p>
+          {% endfor %}
           {{ form.phone_number }}
+          {% for error in form.phone_number.errors %}
+          <p class="p-error">{{ error }}</p>
+          {% endfor %}
           {{ form.descriptions }}
+          {% for error in form.descriptions.errors %}
+          <p class="p-error">{{ error }}</p>
+          {% endfor %}
           <button type="submit">ثبت درخواست</button>
         </form>
   

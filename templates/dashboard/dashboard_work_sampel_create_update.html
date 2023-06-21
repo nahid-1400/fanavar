@@ -1,104 +1,100 @@
-{% extends 'dashboard/shared/base.html' %}
 {% load static %}
 {% load render_partial %}
+{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en" dir="rtl">
 
 <head>
     <!-- Required meta tags -->
-      {% block header_style %}  {% include 'dashboard/shared/header_style.html' %}{% endblock %}
-      {% block title %}داشبورد{% endblock %}
-    </head>
+      {% block header_style %} {% include 'dashboard/shared/header_style.html' %}{% endblock %}
+    <title>{% block title %}
+
+
+        {% if request.resolver_match.url_name == 'work-sampel-add' %}
+   افزودن نمونه کار
+{% else %}
+ویرایش نمونه کار
+{% endif %}
+
+
+        {% endblock %}</title>
+        <style>
+            .row {
+                margin-top: 20px;
+            }
+        </style>
+</head>
 
 <body class="rtl">
     <!--wrapper-->
     <div class="wrapper">
         <!--sidebar wrapper -->
-       {% block sidbar_dashboard %} {% render_partial "dashboard_user:sidbar-dashboard" %} {% endblock %}
+       {% block sidbar_dashboard %}{% render_partial "dashboard_user:sidbar-dashboard" %} {% endblock %}
         <!--end sidebar wrapper -->
         <!--start header -->
-        {% block header_dashboard %}   {% include 'dashboard/shared/header_dashboard.html' %}{% endblock %}
+        {% block header_dashboard %}    {% include 'dashboard/shared/header_dashboard.html' %}{% endblock %}
         <!--end header -->
         <!--start page wrapper -->
         <div class="page-wrapper">
             <div class="page-content">
                 {% block body_dashboard %}
-                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
-                   </div>
-            <div class="row">
-                    <div class="col">
-                        <div class="card radius-10 mb-0">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center">
-                                    <div  style="float: right;">
-                                        <h5 class="mb-1">آخرین سفارشات </h5>
-                                    </div>
-                                    
-                                    <div class="col-lg-3 col-xl-2" style="float: left;margin-right: 70%;">
-                                        <a href="{% url 'dashboard_user:question-add' %}"
-                                            class="btn btn-primary mb-3 mb-lg-0"><i class='bx bxs-plus-square'></i>سوال جدید
-                                            </a>
-                                    </div>
+                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+					<div class="breadcrumb-title pe-3"><a href="{% url 'dashboard_user:work-sampel-add' %}">نموه کار ها</a></div>
+					<div class="ps-3">
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb mb-0 p-0">
+								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+								</li>
+        {% if request.resolver_match.url_name == 'work-sampel-add' %}
+        <li class="breadcrumb-item active" aria-current="page">افزودن نمونه کار</li>
+=
+                            ‌{% else %}
+								<li class="breadcrumb-item active" aria-current="page">ویرایش نمونه کار</li>
+                                {% endif %}
+							</ol>
+						</nav>
+					</div>
+				</div>
+                <div class="card">
+					<div class="row g-0" style="padding: 50px;">
+                        
+                      <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    {{ form.title|as_crispy_field}}
+                                   </div>
+                                   <div class="col">
+                                    {{ form.colleague|as_crispy_field}}
+                                  </div>
+                                   <div class="col">
+                                     {{ form.link|as_crispy_field}}
+                                   </div>
+                                 </div>
+                                 <div class="row" >
+                                    <div class="col">
+                                        {{ form.services|as_crispy_field}}
+                                      </div>
+                                 <div class="col">
+                                    {{ form.image|as_crispy_field}}
+                                   </div>
                                 </div>
-                                {% if messages %}
-                                <div style="margin-top: 20px;">
-                                    <br>
-                                <div class="alert alert-success" style=" background-color: #c072c4; color: white;">
-                                    {% for message in messages %}
-                                        {{ message }}
-                                    {% endfor %}
+                                <div class="row" >
+                                   <div class="col" style="text-align: center;">
+                                     {{ form.descriptions|as_crispy_field}}
+                                   </div>
+                                   </
+                                 </div>
+                              <div class="row-md-6" style="text-align: center;margin: auto ;margin-top: 20px;">
+                                <button  class="btn btn-primary">ثبت</button>
                                 </div>
-                            </div>
+                              </div>
+                      </form>
+						
+				</div>
+				</div>
 
-                            {% endif %}
-                                <div class="table-responsive mt-3">
-                                    <table class="table align-middle mb-0">
-                                        {% if object_list.count == 0 %}
-                                        <p> سوال متداولی جهت نمایش وجود ندارد</p>
-                                        {%  else %}
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>عنوان سوال </th>
-                                                <th>پاسخ </th>
-                                                <th> حذف / ویرایش</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% for question in object_list %}                              
-                                            <tr>
-                                                <td>{{ question.title }}</td>
-                                                <td>{{ question.answer|truncatewords:15|safe }}</td>   
-                                                <td>
-                                                    <div class="d-flex order-actions">
-                                                        <form action="{% url 'dashboard_user:question-delete' question.id %}">
-                                                            {% csrf_token %}
-                                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                                <i class="bx bxs-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                        
-                                                         <form method="post" action="{% url 'dashboard_user:question-update' question.id %}">
-                                                            {% csrf_token %}
-                                                        <button type="submit"
-                                                            class="ms-4 text-primary bg-light-primary border-0"><i
-                                                                class='bx bxs-edit'></i></button>
-                                                                </form>
-                                                    </div>
-                                                </td>  
-                                            {% endfor %}
-                                            
-                                
-                                            </tr>
-                                            {% endif %}
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--end row-->
                 {% endblock %}
             </div>
         </div>
@@ -211,19 +207,12 @@
     </div>
     <!--end switcher-->
     <!-- Bootstrap JS -->
-    {% block footer_refrense %}
-    {% include 'dashboard/shared/footer_refrense.html' %}
+    {% block footer_refrense %}{% include 'dashboard/shared/footer_refrense.html' %}{% endblock %}
     <script>
         new PerfectScrollbar('.customers-list');
         new PerfectScrollbar('.store-metrics');
         new PerfectScrollbar('.product-list');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    {% load sweetify %}
-    {% sweetify %}{% endblock %}
-
-
-    
     
 </body>
 
