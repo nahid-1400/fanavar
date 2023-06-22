@@ -57,6 +57,8 @@ class Dashboard(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
         order_price =  OrderDetail.objects.aggregate(Sum('price'))
         for key, value in order_price.items():
             income = value
+        if income is None:
+            income = 0
         context['ticket'] = Ticket.objects.all()
         context['income'] = income
         return context
@@ -147,15 +149,6 @@ class OrderList(AccessUsersDashboardMixin, LoginRequiredMixin, ListView):
 
 @login_required(login_url='dashboard_user:dashboard-sigin')
 @access_user_dashboard
-def delete_order(request, pk):
-   
-    order.delete()
-    messages.success(request, f'سفارش مورد نظر با موفقیت حذف شد.')
-    return redirect('dashboard_user:order-list')
-
-
-@login_required(login_url='dashboard_user:dashboard-sigin')
-@access_user_dashboard
 def delete_order(request, id):
     order = get_object_or_404(OrderDetail, id=id)
     if request.method == 'POST':
@@ -164,8 +157,6 @@ def delete_order(request, id):
         return redirect('dashboard_user:order-list')
     context = {'object_name': order.title,'link': 'dashboard_user:order-list'}
     return render(request, 'dashboard/confirm_delete.html', context)
-
-
 
 class OrderUpdate(AccessUsersDashboardMixin, LoginRequiredMixin ,UpdateView):
     model = OrderDetail
@@ -416,10 +407,18 @@ class WorkSampelUpdate(AccessUsersDashboardMixin, LoginRequiredMixin, UpdateView
         context['form'] = self.form_class(instance=work_sampel_obj)
         return context
 
-class WorkSampelDelete(AccessUsersDashboardMixin, LoginRequiredMixin, DeleteView):
-    model = WorkSampel
-    success_url  = reverse_lazy('dashboard_user:work-sampel_list')
-    template_name = 'dashboard/confirm_delete.html'
+
+@login_required(login_url='dashboard_user:dashboard-sigin')
+@access_user_dashboard
+def work_sampel_delete(request, id):
+    work_sampel = get_object_or_404(WorkSampel, id=id)
+    if request.method == 'POST':
+        work_sampel.delete()
+        messages.success(request, f'نمونه کار مورد نظر با موفقیت حذف شد.')
+        return redirect('dashboard_user:work-sampel_list')
+    context = {'object_name': work_sampel.title,'link': 'dashboard_user:work-sampel_list'}
+    return render(request, 'dashboard/confirm_delete.html', context)
+
 
 
 @login_required(login_url='dashboard_user:dashboard-sigin')

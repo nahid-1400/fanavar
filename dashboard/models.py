@@ -14,10 +14,6 @@ class Services(models.Model):
     active = models.BooleanField(default=True, verbose_name='فعال')
     show_in_work_sampel_page = models.BooleanField(default=True, verbose_name='نمایش در صفحه نمونه کارها')
 
-
-    
-    
-
     def get_absolute_url(self):
         return reverse('dashboard_user:servisees-dashboard')
 

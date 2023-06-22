@@ -9,7 +9,7 @@ from dashboard.views import (login_dashboard, Dashboard,
     CateGoryArticelList,CateGoryArticelAdd,CateGoryArticelUpdate,
     category_delete, TicketList, answer_ticket, TicketDelete,
      clos_the_ticket, WorkSampelList,WorkSampelAdd, WorkSampelUpdate,
-      WorkSampelDelete,question_delete, change_password_dashboard)
+      work_sampel_delete,question_delete, change_password_dashboard)
 
 
 app_name = 'dashboard_user'
@@ -40,7 +40,7 @@ urlpatterns = [
     path('service/delete/<int:id>', delete_service, name='delete-service'),
     path('articles', ArticleDashboard.as_view(), name='article-list'),
     path('orders', OrderList.as_view(), name='order-list'),
-    path('work_sampel/delete/<int:pk>', WorkSampelDelete.as_view(), name='work-sampel-delete'),
+    path('work_sampel/delete/<int:id>', work_sampel_delete, name='work-sampel-delete'),
     path('orders/delete/<int:id>', delete_order, name='order-delete'),
     path('demand', DemandList.as_view(), name='demand-list'),
     path('demand/delete/<int:id>', demand_delete, name='demand-delete'),

@@ -86,7 +86,7 @@ def profile_logout_user(request):
 @login_required(login_url='login-signup')
 def profile_edit_information(request):
     user = request.user
-    form = ProfileUpdateInformation(request.POST or None,  request=request, initial={'first_name': user.first_name, 'last_name': user.last_name, 'phone_number': user.phone_number, 'email': user.email, 'profile_image': user.profile_image})
+    form = ProfileUpdateInformation(request.POST or None,request.FILES or None,  request=request, initial={'first_name': user.first_name, 'last_name': user.last_name, 'phone_number': user.phone_number, 'email': user.email, 'profile_image': user.profile_image})
     if form.is_valid():
         first_name = form.cleaned_data.get('first_name')
         last_name = form.cleaned_data.get('last_name')
@@ -131,7 +131,7 @@ def change_password(request):
         if user.check_password(password_back):
             user.set_password(new_password)
             user.save()
-            return redirect('profile:profile-user-informattion')
+            return redirect('login-signup')
             sweetify.success(request, 'عملیات موفق', text='رمز عبور شما به موفقیت تغییر کرد', persistent='بسیار خوب')
         else:
             change_password_form.add_error('password_back', 'رمز عبور صحیح نیست')

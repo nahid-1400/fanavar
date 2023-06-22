@@ -143,11 +143,18 @@ STATICFILES_DIRS = [
 
 
 
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'dashboard.MyUser'
+
+
+
+
+
+
 
 LOGIN_REDIRECT_URL = 'dashboard_user:dashboard-sigin'
 LOGOUT_REDIRECT_URL = 'dashboard_user:dashboard-sigin'

@@ -41,7 +41,7 @@
 					</div>
 					<p>{{ work_sampel.colleague.full_name }}</p>
 					<h3>{{ work_sampel.title }}</h3>
-					<p class="comment">{{ work_sampel.descriptions }}</p>
+					<p class="comment">{{ work_sampel.descriptions|striptags|safe }}</p>
 				</section>
 			</a>
 			{% endif %}
